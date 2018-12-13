@@ -1,25 +1,34 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Adapter from './apis/Adapter'
 
 class App extends Component {
+  state = {
+    marketInfo: [],
+    selectedStock: null
+  }
+
+  componentDidMount() {
+    //// // TODO:  Refactor
+    this.setMarketInfo()
+    this.timer = setInterval(() => this.setMarketInfo(), 1000)
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timer)
+  }
+
+  setMarketInfo() {
+    Adapter.getMarkets()
+    .then(data => this.setState({ marketInfo: data }))
+    .catch(e => console.log(e))
+  }
+
   render() {
+
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+
       </div>
     );
   }
