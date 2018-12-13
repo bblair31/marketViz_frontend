@@ -8,12 +8,12 @@ const renderSectorCards = (sectorInfo) => {
 }
 
 
-const MarketContainer = (props) => {
+const SectorContainer = (props) => {
   return (
-    <div className="sector-container">
+    <div className="sector-container" style={{border: '5px solid green'}}>
       <h3>SECTORS</h3>
       {renderSectorCards(props.sectorInfo)}
     </div>
   )
 } /// End of Dashboard Class
-export default MarketContainer
+export default SectorContainer

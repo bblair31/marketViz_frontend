@@ -11,7 +11,7 @@ const renderMarketCards = (marketInfo) => {
 
 const MarketContainer = (props) => {
   return (
-    <div className="market-container">
+    <div className="market-container" style={{border: '5px solid green'}}>
       <h3>MARKETS</h3>
       <MarketStatus />
       {renderMarketCards(props.marketInfo)}

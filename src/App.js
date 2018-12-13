@@ -43,7 +43,7 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <Route path="/dashboard" component={() => <Dashboard
+          <Route path="/dashboard" render={() => <Dashboard
             marketInfo={this.state.marketInfo}
             sectorInfo={this.state.sectorInfo}
            />}

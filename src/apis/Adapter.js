@@ -31,4 +31,14 @@ export default class Adapter {
     return fetch(`${BASE_URL}/marketnews`)
       .then(res => res.json())
   }
+
+  static getEarningsToday() {
+    return fetch(`${BASE_URL}/earningstoday`)
+      .then(res => res.json())
+  }
+
+  static getIpos() {
+    return fetch(`${BASE_URL}/iposcalendar`)
+      .then(res => res.json())
+  }
 } // End of Adapter Class
