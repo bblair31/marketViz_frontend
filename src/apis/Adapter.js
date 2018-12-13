@@ -7,6 +7,11 @@ export default class Adapter {
       .then(res => res.json())
   }
 
+  static getSectors() {
+    return fetch(`${BASE_URL}/sectorperformance`)
+      .then(res => res.json())
+  }
+
   static getMostActive() {
     return fetch(`${BASE_URL}/mostactive`)
       .then(res => res.json())
