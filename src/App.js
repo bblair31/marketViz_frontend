@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Adapter from './apis/Adapter'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
-import Dashboard from './components/Dashboard'
+import Dashboard from './containers/Dashboard'
 
 class App extends Component {
   state = {
@@ -43,7 +43,10 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <Route path="/dashboard" component={() => <Dashboard />} />
+          <Route path="/dashboard" component={() => <Dashboard
+            marketInfo={this.state.marketInfo}
+           />}
+          />
         </div>
       </Router>
     )
