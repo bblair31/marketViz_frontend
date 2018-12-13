@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import MarketContainer from './MarketContainer'
+import SectorContainer from './SectorContainer'
 
 class Dashboard extends Component {
 
@@ -8,6 +9,9 @@ class Dashboard extends Component {
       <div className="dashboard"> Dashboard
         <MarketContainer
           marketInfo={this.props.marketInfo}
+        />
+        <SectorContainer
+          sectorInfo={this.props.sectorInfo}
         />
       </div>
     )

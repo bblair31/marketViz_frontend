@@ -45,6 +45,7 @@ class App extends Component {
         <div className="App">
           <Route path="/dashboard" component={() => <Dashboard
             marketInfo={this.state.marketInfo}
+            sectorInfo={this.state.sectorInfo}
            />}
           />
         </div>

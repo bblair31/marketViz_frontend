@@ -11,7 +11,8 @@ const renderMarketCards = (marketInfo) => {
 
 const MarketContainer = (props) => {
   return (
-    <div className="market-container">MarketContainer
+    <div className="market-container">
+      <h3>MARKETS</h3>
       <MarketStatus />
       {renderMarketCards(props.marketInfo)}
     </div>
