@@ -38,7 +38,7 @@ export default class Adapter {
   }
 
   static getIpos() {
-    return fetch(`${BASE_URL}/iposcalendar`)
+    return fetch(`${BASE_URL}/ipostoday`)
       .then(res => res.json())
   }
 } // End of Adapter Class

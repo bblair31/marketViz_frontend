@@ -4,6 +4,7 @@ import MarketContainer from './MarketContainer'
 import SectorContainer from './SectorContainer'
 import GainerLoserContainer from './GainerLoserContainer'
 import NewsContainer from './NewsContainer'
+import EventsContainer from './EventsContainer'
 
 class Dashboard extends Component {
   state = {
@@ -11,7 +12,7 @@ class Dashboard extends Component {
     losers: [],
     marketNews: [],
     earningsToday: [],
-    iposCalendar: []
+    iposToday: []
   }
 
   componentDidMount() {
@@ -24,15 +25,16 @@ class Dashboard extends Component {
 
     this.gainersTimer = setInterval(() => this.setGainers(), 1000)
     this.losersTimer = setInterval(() => this.setLosers(), 1000)
-    this.marketNewsTimer = setInterval(() => this.setMarketNews(), 1000)
-    this.earningsTodayTimer = setInterval(() => this.setEarningsToday(), 1000)
-    this.iposTimer = setInterval(() => this.setIpos(), 1000)
+    this.marketNewsTimer = setInterval(() => this.setMarketNews(), 5000)
+    this.earningsTodayTimer = setInterval(() => this.setEarningsToday(), 10000)
+    this.iposTimer = setInterval(() => this.setIpos(), 10000)
   }
 
   componentWillUnmount() {
     clearInterval(this.gainersTimer)
     clearInterval(this.losersTimer)
     clearInterval(this.marketNewsTimer)
+    clearInterval(this.earningsToday)
     clearInterval(this.iposTimer)
   }
 
@@ -62,7 +64,7 @@ class Dashboard extends Component {
 
   setIpos() {
     Adapter.getIpos()
-    .then(data => this.setState({ iposCalendar: data }))
+    .then(data => this.setState({ iposToday: data }))
     .catch(e => console.log(e))
   }
 
@@ -79,7 +81,13 @@ class Dashboard extends Component {
           gainers={this.state.gainers}
           losers={this.state.losers}
          />
-         <NewsContainer news={this.state.marketNews} />
+         <NewsContainer
+           news={this.state.marketNews}
+         />
+         <EventsContainer
+           earningsToday={this.state.earningsToday}
+           iposToday={this.state.iposToday}
+         />
       </div>
     )
   }
