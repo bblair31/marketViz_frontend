@@ -34,7 +34,7 @@ class Dashboard extends Component {
     clearInterval(this.gainersTimer)
     clearInterval(this.losersTimer)
     clearInterval(this.marketNewsTimer)
-    clearInterval(this.earningsToday)
+    clearInterval(this.earningsTodayTimer)
     clearInterval(this.iposTimer)
   }
 

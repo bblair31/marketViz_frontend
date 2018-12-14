@@ -3,12 +3,13 @@ import './App.css';
 import Adapter from './apis/Adapter'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Dashboard from './containers/Dashboard'
+import Stock from './containers/Stock'
 
 class App extends Component {
   state = {
     marketInfo: [],
     sectorInfo: [],
-    selectedStock: null,
+    selectedStock: "",
     watchlist: [],
     stockDictionary: []
   }
@@ -44,6 +45,13 @@ class App extends Component {
       <Router>
         <div className="App">
           <Route exact path="/" render={() => <Dashboard
+            marketInfo={this.state.marketInfo}
+            sectorInfo={this.state.sectorInfo}
+           />}
+          />
+
+          <Route path="/stocks/:symbol" render={routerProps => <Stock
+            {...routerProps}
             marketInfo={this.state.marketInfo}
             sectorInfo={this.state.sectorInfo}
            />}
