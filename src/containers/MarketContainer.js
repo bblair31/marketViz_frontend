@@ -17,5 +17,5 @@ const MarketContainer = (props) => {
       {renderMarketCards(props.marketInfo)}
     </div>
   )
-} /// End of Dashboard Class
+} /// End of MarketContainer Class
 export default MarketContainer

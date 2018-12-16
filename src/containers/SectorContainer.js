@@ -15,5 +15,5 @@ const SectorContainer = (props) => {
       {renderSectorCards(props.sectorInfo)}
     </div>
   )
-} /// End of Dashboard Class
+} /// End of SectorContainer
 export default SectorContainer

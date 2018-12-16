@@ -20,5 +20,5 @@ const EventsContainer = ({ earningsToday, iposToday  }) => {
       {renderEventCards(iposToday)}
     </div>
   )
-} /// End of Dashboard Class
+} /// End of EventsContainer
 export default EventsContainer

@@ -16,5 +16,5 @@ const GainerLoserContainer = ({ gainers, losers }) => {
       LOSERS: {renderGLList(losers)}
     </div>
   )
-} /// End of Dashboard Class
+} /// End of GainerLoserContainer
 export default GainerLoserContainer

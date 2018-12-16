@@ -15,5 +15,5 @@ const NewsContainer = ( { news }) => {
       {renderNewsCards(news)}
     </div>
   )
-} /// End of Dashboard Class
+} /// End of NewsContainer
 export default NewsContainer

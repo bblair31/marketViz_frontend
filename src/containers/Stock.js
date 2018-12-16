@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import Adapter from '../apis/Adapter'
 import MarketContainer from './MarketContainer'
 import EarningsContainer from './EarningsContainer'
-
+import NewsContainer from './NewsContainer'
+import StockDetailsContainer from './StockDetailsContainer'
 
 
 class Stock extends Component {
@@ -98,7 +99,12 @@ class Stock extends Component {
 
         {this.state.symbol} Show Page  <img src={this.state.logo} alt="" />
 
+        <StockDetailsContainer
+          companyInfo={this.state.companyInfo}
+          stock={this.state.stock}
+        />
         <EarningsContainer earnings={this.state.earnings} />
+        <NewsContainer news={this.state.news}/>
       </div>
     )
   }

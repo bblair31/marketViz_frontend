@@ -5,6 +5,7 @@ const EarningsChart = ({ earning }) => {
     <div className="earnings-chart">
       {earning.EPSReportDate} -----
       {earning.actualEPS}
+      {earning.fiscalPeriod}
 
     </div>
   )
