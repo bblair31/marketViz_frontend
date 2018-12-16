@@ -9,5 +9,5 @@ const StockCard = ({ stock }) => {
       <p>{stock.latestPrice}</p>
     </div>
   )
-} /// End of Dashboard Class
+}
 export default StockCard

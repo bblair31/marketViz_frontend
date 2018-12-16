@@ -4,7 +4,10 @@ import MarketContainer from './MarketContainer'
 import EarningsContainer from './EarningsContainer'
 import NewsContainer from './NewsContainer'
 import StockDetailsContainer from './StockDetailsContainer'
-
+import PeersTable from '../components/PeersTable'
+import BalanceSheet from '../components/BalanceSheet'
+import KeyStats from '../components/KeyStats'
+import StockChart from '../components/StockChart'
 
 class Stock extends Component {
 
@@ -18,6 +21,7 @@ class Stock extends Component {
     balanceSheet: [],
     companyInfo: [],
     earnings: [],
+    keyStats: [],
     logo: null
   }
 
@@ -30,6 +34,7 @@ class Stock extends Component {
     this.setCompanyInfo()
     this.setLogo()
     this.setEarnings()
+    this.setKeyStats()
 
     this.chartTimer = setInterval(() => this.setChart(), 60000)
     this.stockTimer = setInterval(() => this.setStock(), 1000)
@@ -92,19 +97,28 @@ class Stock extends Component {
     .catch(e => console.log(e))
   }
 
+  setKeyStats() {
+    Adapter.getKeyStats(this.state.symbol)
+    .then(data => this.setState({ keyStats: data}))
+    .catch(e => console.log(e))
+  }
+
   render() {
     return (
       <div className="stock">
         <MarketContainer marketInfo={this.props.marketInfo}/>
 
         {this.state.symbol} Show Page  <img src={this.state.logo} alt="" />
-
+        <StockChart />
         <StockDetailsContainer
           companyInfo={this.state.companyInfo}
           stock={this.state.stock}
         />
+        <KeyStats keyStats={this.state.keyStats}/>
         <EarningsContainer earnings={this.state.earnings} />
         <NewsContainer news={this.state.news}/>
+        <PeersTable peers={this.state.peers}/>
+        <BalanceSheet balanceSheet={this.state.balanceSheet}/>
       </div>
     )
   }

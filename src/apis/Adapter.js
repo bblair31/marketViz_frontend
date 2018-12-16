@@ -55,7 +55,6 @@ export default class Adapter {
   static getPeers(symbol) {
     return fetch(`${BASE_URL}/peers/${symbol}`)
       .then(res => res.json())
-      .then(peers => peers.map(peer => this.getStock(peer)))
   }
 
   static getNews(symbol) {
@@ -80,6 +79,11 @@ export default class Adapter {
 
   static getEarnings(symbol) {
     return fetch(`${BASE_URL}/earnings/${symbol}`)
+      .then(res => res.json())
+  }
+
+  static getKeyStats(symbol) {
+    return fetch(`${BASE_URL}/keystats/${symbol}`)
       .then(res => res.json())
   }
 } // End of Adapter Class

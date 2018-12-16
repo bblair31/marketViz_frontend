@@ -7,5 +7,5 @@ const SectorCard = ({ sector }) => {
       <p>{sector.performance}</p>
     </div>
   )
-} /// End of Dashboard Class
+} 
 export default SectorCard
