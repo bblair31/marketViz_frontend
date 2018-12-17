@@ -3,9 +3,11 @@ import EarningsChart from '../components/EarningsChart'
 
 
 const renderEarnings = (earnings) => {
-  return earnings.map(earning => {
-    return <EarningsChart key={earning.EPSReportDate} earning={earning} />
-  })
+  if (earnings) {
+    return earnings.map(earning => {
+      return <EarningsChart key={earning.EPSReportDate} earning={earning} />
+    })  
+  }
 }
 
 

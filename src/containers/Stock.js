@@ -14,7 +14,7 @@ class Stock extends Component {
   state = {
     symbol: this.props.match.params.symbol,
     chart: [],
-    chartTimeframe: "1d",
+    chartTimeframe: "1m",
     stock: [],
     peers: [],
     news: [],
@@ -103,13 +103,29 @@ class Stock extends Component {
     .catch(e => console.log(e))
   }
 
+  changeChartTimeframe = (event) => {
+    this.setState({ chartTimeframe: event.target.value }, () => this.setChart())
+  }
+
   render() {
     return (
       <div className="stock">
         <MarketContainer marketInfo={this.props.marketInfo}/>
 
         {this.state.symbol} Show Page  <img src={this.state.logo} alt="" />
-        <StockChart />
+
+        <div name="live-stock-info">
+          <h5>{this.state.stock.companyName}</h5>
+          <h3>${this.state.stock.latestPrice}</h3>
+          <i>{this.state.stock.change}</i>
+          <p>{this.state.stock.changePercent}</p>
+          <i>Updated {this.state.stock.latestTime}</i>
+        </div>
+
+        <StockChart
+          chartData={this.state.chart}
+          changeChartTimeframe={this.changeChartTimeframe}
+        />
         <StockDetailsContainer
           companyInfo={this.state.companyInfo}
           stock={this.state.stock}
