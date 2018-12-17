@@ -4,6 +4,7 @@ import Adapter from './apis/Adapter'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Dashboard from './containers/Dashboard'
 import Stock from './containers/Stock'
+import SearchBar from './components/SearchBar'
 
 class App extends Component {
   state = {
@@ -11,21 +12,24 @@ class App extends Component {
     sectorInfo: [],
     selectedStock: "",
     watchlist: [],
-    stockDictionary: []
+    stockDictionary: [],
+    query: "",
   }
 
   componentDidMount() {
-    //// // TODO:  Refactor
     this.setMarketInfo()
     this.setSectorInfo()
+    this.setStockDictionary()
 
     this.marketInfoTimer = setInterval(() => this.setMarketInfo(), 1000)
     this.sectorInfoTimer = setInterval(() => this.setSectorInfo(), 1000)
+    this.stockDictionaryTimer = setInterval(() => this.setStockDictionary(), 1000000)
   }
 
   componentWillUnmount() {
     clearInterval(this.marketInfoTimer)
     clearInterval(this.sectorInfoTimer)
+    clearInterval(this.stockDictionaryTimer)
   }
 
   setMarketInfo() {
@@ -40,10 +44,18 @@ class App extends Component {
     .catch(e => console.log(e))
   }
 
+  setStockDictionary() {
+    Adapter.getStockDictionary()
+    .then(data => data.map(dataObj => ({ symbol: dataObj.symbol, name: dataObj.name })))
+    .then(mappedData => this.setState({ stockDictionary: mappedData }))
+    .catch(e => console.log(e))
+  }
+
   render() {
     return (
       <Router>
         <div className="App">
+          <SearchBar stockDictionary={this.state.stockDictionary} />
           <Route exact path="/" render={() => <Dashboard
             marketInfo={this.state.marketInfo}
             sectorInfo={this.state.sectorInfo}
@@ -54,6 +66,7 @@ class App extends Component {
             {...routerProps}
             marketInfo={this.state.marketInfo}
             sectorInfo={this.state.sectorInfo}
+            key={routerProps.match.params.symbol}
            />}
           />
         </div>

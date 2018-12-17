@@ -8,24 +8,28 @@ const mapHeaders = () => {
 
 const mapRows = (peers) => {
   return peers.map(peer => {
-    return (
-      <tr key={peer.symbol}>
-        <td>{peer.symbol}</td>
-        <td>{peer.companyName}</td>
-        <td>{peer.sector}</td>
-        <td>{peer.marketCap}</td>
-        <td>{peer.avgTotalVolume}</td>
-        <td>{peer.latestVolume}</td>
-        <td>{peer.change}</td>
-        <td>{peer.changePercent}</td>
-        <td>{peer.latestPrice}</td>
-        <td>{peer.peRatio}</td>
-        <td>{peer.previousClose}</td>
-        <td>{peer.week52Low}</td>
-        <td>{peer.week52High}</td>
-        <td>{peer.ytdChange}</td>
-      </tr>
-    )
+    if (peers) {
+      return (
+        <tr key={peer.symbol}>
+          <td>{peer.symbol}</td>
+          <td>{peer.companyName}</td>
+          <td>{peer.sector}</td>
+          <td>{peer.marketCap}</td>
+          <td>{peer.avgTotalVolume}</td>
+          <td>{peer.latestVolume}</td>
+          <td>{peer.change}</td>
+          <td>{peer.changePercent}</td>
+          <td>{peer.latestPrice}</td>
+          <td>{peer.peRatio}</td>
+          <td>{peer.previousClose}</td>
+          <td>{peer.week52Low}</td>
+          <td>{peer.week52High}</td>
+          <td>{peer.ytdChange}</td>
+        </tr>
+      )
+    } else {
+      return null
+    }
   })
 }
 

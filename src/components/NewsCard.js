@@ -9,5 +9,5 @@ const NewsCard = ({ news }) => {
       <br></br>
     </div>
   )
-} /// End of Dashboard Class
+}
 export default NewsCard

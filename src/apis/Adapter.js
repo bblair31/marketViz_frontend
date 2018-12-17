@@ -32,6 +32,11 @@ export default class Adapter {
       .then(res => res.json())
   }
 
+  static getStockDictionary() {
+    return fetch(`${BASE_URL}/stockdictionary`)
+      .then(res => res.json())
+  }
+
   static getEarningsToday() {
     return fetch(`${BASE_URL}/earningstoday`)
       .then(res => res.json())
@@ -86,4 +91,5 @@ export default class Adapter {
     return fetch(`${BASE_URL}/keystats/${symbol}`)
       .then(res => res.json())
   }
+
 } // End of Adapter Class

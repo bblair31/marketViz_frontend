@@ -14,7 +14,7 @@ class Stock extends Component {
   state = {
     symbol: this.props.match.params.symbol,
     chart: [],
-    chartTimeframe: "1m",
+    chartTimeframe: "1d",
     stock: [],
     peers: [],
     news: [],

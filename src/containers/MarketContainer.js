@@ -3,9 +3,11 @@ import MarketStatus from '../components/MarketStatus'
 import MarketCard from '../components/MarketCard'
 
 const renderMarketCards = (marketInfo) => {
-  return marketInfo.map(market => {
-    return <MarketCard key={market.mic} market={market} />
-  })
+  if (marketInfo !== []) {
+    return marketInfo.map(market => {
+      return <MarketCard key={market.mic} market={market} />
+    })
+  }
 }
 
 

@@ -70,7 +70,7 @@ class Dashboard extends Component {
 
   render() {
     return (
-      <div className="dashboard"> Dashboard
+      <div className="dashboard">
         <MarketContainer
           marketInfo={this.props.marketInfo}
         />
