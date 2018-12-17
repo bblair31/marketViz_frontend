@@ -82,7 +82,7 @@ class Dashboard extends Component {
           losers={this.state.losers}
          />
          <NewsContainer
-           news={this.state.marketNews}
+           news={this.state.marketNews['SPY'] ? Object.values(this.state.marketNews['SPY']).flat() : this.state.marketNews}
          />
          <EventsContainer
            earningsToday={this.state.earningsToday}

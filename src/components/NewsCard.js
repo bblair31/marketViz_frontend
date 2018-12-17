@@ -5,7 +5,6 @@ const NewsCard = ({ news }) => {
     <div className="news-card" style={{display: "inline-block"}}>
       <b>{news.headline}</b>
       <p>{news.datetime}</p>
-      <p>{news.source}</p>
       <a href={news.url} target="_blank" rel="noopener noreferrer"> Link </a>
       <br></br>
     </div>
