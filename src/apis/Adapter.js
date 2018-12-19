@@ -37,8 +37,8 @@ export default class Adapter {
   static addTransaction(foundStock, latestPrice, username) {
     let data = {
       symbol: foundStock.symbol,
-      company_name: foundStock.companyName,
-      iex_id: foundStock.iexId,
+      company_name: foundStock.name,
+      iex_id: parseInt(foundStock.iexId),
       price_bought: latestPrice,
       username: username
     }
@@ -46,6 +46,7 @@ export default class Adapter {
     return fetch(`${BASE_URL}/transactions`, {
       method: "POST",
       headers: {
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`,
         "Content-Type": "application/json; charset=utf-8"
       },
       body: JSON.stringify(data)
@@ -140,6 +141,17 @@ export default class Adapter {
   static getKeyStats(symbol) {
     return fetch(`${BASE_URL}/keystats/${symbol}`)
       .then(res => res.json())
+  }
+
+  static getWatchlist() {
+    fetch(`${BASE_URL}/portfolio`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`
+      }
+    })
+    .then(res => res.json())
+    .then(console.log)
   }
 
 } // End of Adapter Class
