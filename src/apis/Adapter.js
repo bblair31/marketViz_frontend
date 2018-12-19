@@ -23,6 +23,17 @@ export default class Adapter {
     })
   }
 
+  static fetchCurrentUser() {
+    fetch(`${BASE_URL}/profile`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`
+      }
+    })
+    .then(res => res.json())
+    .then(console.log)
+  }
+
   static addTransaction(foundStock, latestPrice, username) {
     let data = {
       symbol: foundStock.symbol,

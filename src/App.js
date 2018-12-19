@@ -7,6 +7,8 @@ import Stock from './containers/Stock'
 import WelcomeContainer from './containers/WelcomeContainer'
 import SearchBar from './components/SearchBar'
 import NotFound from './components/NotFound'
+import Watchlist from './containers/Watchlist'
+import withAuth from './hocs/withAuth'
 
 class App extends Component {
   state = {
@@ -15,16 +17,30 @@ class App extends Component {
     stockDictionary: [],
     query: "",
     watchlist: [],
+    watchlistQuotes: [],
     user: null,
   }
 
   componentDidMount() {
+    if (localStorage.jwt && !this.state.user) {
+      this.setState({user: localStorage.user})
+    } else if (localStorage.jwt && !localStorage.user) {
+      let user = Adapter.fetchCurrentUser()
+      localStorage.setItem('user', JSON.stringify(user))
+    } else {
+      this.props.history.push('/login')
+    }
+
+
+
     this.setMarketInfo()
     this.setSectorInfo()
+    this.setWatchlistQuotes()
     this.setStockDictionary()
 
     this.marketInfoTimer = setInterval(() => this.setMarketInfo(), 1000)
     this.sectorInfoTimer = setInterval(() => this.setSectorInfo(), 1000)
+    this.sectorWatchlistQuotesTimer = setInterval(() => this.setWatchlistQuotes(), 1000)
     this.stockDictionaryTimer = setInterval(() => this.setStockDictionary(), 1000000)
   }
 
@@ -46,6 +62,18 @@ class App extends Component {
     .catch(e => console.log(e))
   }
 
+  setWatchlistQuotes() {
+    if (this.state.watchlist.length > 0) {
+      this.setState({watchlistQuotes: []})
+      this.state.watchlist.map(listObj => {
+        return Adapter.getStock(listObj.symbol)
+          .then(res => this.setState(prevState => {
+            return {watchlistQuotes: [...prevState.watchlistQuotes, res]}
+          })
+      )})
+    }
+  }
+
   setStockDictionary() {
     Adapter.getStockDictionary()
     .then(data => data.map(dataObj => ({ symbol: dataObj.symbol, name: dataObj.name, iexId: dataObj.iexId })))
@@ -55,7 +83,14 @@ class App extends Component {
 
   successfulLogin = ({ user, jwt }) => {
     localStorage.setItem('jwt', jwt)
-    this.setState( { user }, () => this.props.history.push('/dashboard') )
+    localStorage.setItem('user', JSON.stringify(user))
+    this.setState( { user }, () => this.props.history.push('/dashboard'))
+  }
+
+  handleLogout = () => {
+    localStorage.clear()
+    this.setState({user: null})
+    this.props.history.push('/login')
   }
 
   handleStarClick = (symbol, companyName, latestPrice, user) => {
@@ -63,14 +98,16 @@ class App extends Component {
 
     Adapter.addTransaction(foundStock, latestPrice, this.state.user.username)
       .then(res => res.json())
-      .then(console.log)
+      .then(res => this.setState({ watchlist: res }))
   }
+
 
   render() {
     return (
       <div className="App">
-
+        <button onClick={this.handleLogout}>Logout</button>
         <SearchBar stockDictionary={this.state.stockDictionary} />
+        {/* <Watchlist watchlistQuotes={this.state.watchlistQuotes} /> */}
 
         <Switch>
           <Route exact path="/" render={() => <Redirect to="/dashboard" />} />
@@ -81,7 +118,7 @@ class App extends Component {
           <Route path="/dashboard" render={() => <Dashboard
             marketInfo={this.state.marketInfo}
             sectorInfo={this.state.sectorInfo}
-           />}
+            />}
           />
           <Route exact path="/stocks/:symbol" render={routerProps => <Stock
             {...routerProps}

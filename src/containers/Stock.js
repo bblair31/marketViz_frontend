@@ -112,15 +112,15 @@ class Stock extends Component {
       <div className="stock">
         <MarketContainer marketInfo={this.props.marketInfo}/>
 
-        {this.state.symbol} Show Page  <img src={this.state.logo} alt="" />
+        {this.state.symbol} <img src={this.state.logo} alt="" />
 
         <div name="live-stock-info">
           <button name="watchlist-star"
             onClick={() => this.props.handleStarClick(this.state.stock.symbol, this.state.stock.companyName, this.state.stock.latestPrice)}>⭐️</button>
           <h5>{this.state.stock.companyName}</h5>
-          <h3>${this.state.stock.latestPrice}</h3>
-          <i>{this.state.stock.change}</i>
-          <p>{this.state.stock.changePercent}</p>
+          <h3>Current Price: ${this.state.stock.latestPrice}</h3>
+          <i>Change: {this.state.stock.change}</i>
+          <p>% Change: {(this.state.stock.changePercent * 100).toFixed(2)}%</p>
           <i>Updated {this.state.stock.latestTime}</i>
         </div>
 
