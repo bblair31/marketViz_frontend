@@ -1,19 +1,21 @@
 import React, { Component } from 'react';
 import './App.css';
 import Adapter from './apis/Adapter'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { Route, withRouter, Switch, Redirect } from 'react-router-dom'
 import Dashboard from './containers/Dashboard'
 import Stock from './containers/Stock'
+import WelcomeContainer from './containers/WelcomeContainer'
 import SearchBar from './components/SearchBar'
+import NotFound from './components/NotFound'
 
 class App extends Component {
   state = {
     marketInfo: [],
     sectorInfo: [],
-    selectedStock: "",
-    watchlist: [],
     stockDictionary: [],
     query: "",
+    watchlist: [],
+    user: null,
   }
 
   componentDidMount() {
@@ -46,33 +48,55 @@ class App extends Component {
 
   setStockDictionary() {
     Adapter.getStockDictionary()
-    .then(data => data.map(dataObj => ({ symbol: dataObj.symbol, name: dataObj.name })))
+    .then(data => data.map(dataObj => ({ symbol: dataObj.symbol, name: dataObj.name, iexId: dataObj.iexId })))
     .then(mappedData => this.setState({ stockDictionary: mappedData }))
     .catch(e => console.log(e))
   }
 
+  successfulLogin = ({ user, jwt }) => {
+    localStorage.setItem('jwt', jwt)
+    this.setState( { user }, () => this.props.history.push('/dashboard') )
+  }
+
+  handleStarClick = (symbol, companyName, latestPrice, user) => {
+    let foundStock = this.state.stockDictionary.find(stock => stock.symbol === symbol)
+
+    Adapter.addTransaction(foundStock, latestPrice, this.state.user.username)
+      .then(res => res.json())
+      .then(console.log)
+  }
+
   render() {
     return (
-      <Router>
-        <div className="App">
-          <SearchBar stockDictionary={this.state.stockDictionary} />
-          <Route exact path="/" render={() => <Dashboard
+      <div className="App">
+
+        <SearchBar stockDictionary={this.state.stockDictionary} />
+
+        <Switch>
+          <Route exact path="/" render={() => <Redirect to="/dashboard" />} />
+          <Route path="/login" render={() => <WelcomeContainer
+             successfulLogin={this.successfulLogin}
+           />}
+          />
+          <Route path="/dashboard" render={() => <Dashboard
             marketInfo={this.state.marketInfo}
             sectorInfo={this.state.sectorInfo}
            />}
           />
-
-          <Route path="/stocks/:symbol" render={routerProps => <Stock
+          <Route exact path="/stocks/:symbol" render={routerProps => <Stock
             {...routerProps}
             marketInfo={this.state.marketInfo}
             sectorInfo={this.state.sectorInfo}
             key={routerProps.match.params.symbol}
+            handleStarClick={this.handleStarClick}
            />}
           />
-        </div>
-      </Router>
+         <Route component={NotFound} />
+
+        </Switch>
+      </div>
     )
   }
 }
 
-export default App;
+export default withRouter(App);

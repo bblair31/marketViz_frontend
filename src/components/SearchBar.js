@@ -34,10 +34,8 @@ class SearchBar extends Component {
   handleSearchSubmit = event => {
     event.preventDefault()
     let stateCopy = Object.assign({}, this.state)
-    console.log(this.props.location);
-    this.props.history.push(`/stocks/${stateCopy.query.split(" ")[0]}`)
-    console.log(this.props.location);
     this.setState({ query: "", suggestions: [] })
+    this.props.history.push(`/stocks/${stateCopy.query.split(" ")[0]}`)
   }
 
 

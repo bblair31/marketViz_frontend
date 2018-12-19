@@ -2,6 +2,45 @@ const BASE_URL = "http://localhost:3000/api/v1";
 
 
 export default class Adapter {
+
+  static newUser(userData) {
+    return fetch(`${BASE_URL}/users`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json; charset=utf-8"
+      },
+      body: JSON.stringify(userData)
+    })
+  }
+
+  static login(userData) {
+    return fetch(`${BASE_URL}/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json; charset=utf-8"
+      },
+      body: JSON.stringify(userData)
+    })
+  }
+
+  static addTransaction(foundStock, latestPrice, username) {
+    let data = {
+      symbol: foundStock.symbol,
+      company_name: foundStock.companyName,
+      iex_id: foundStock.iexId,
+      price_bought: latestPrice,
+      username: username
+    }
+
+    return fetch(`${BASE_URL}/transactions`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json; charset=utf-8"
+      },
+      body: JSON.stringify(data)
+    })
+  }
+
   static getMarkets() {
     return fetch(`${BASE_URL}/markets`)
       .then(res => res.json())

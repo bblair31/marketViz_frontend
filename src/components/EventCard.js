@@ -8,7 +8,7 @@ const EventCard = ({ eventObj }) => {
       <p>Price: {eventObj.quote.latestPrice}</p>
       <p>Change: {eventObj.quote.change}</p>
       <p>Change %: {eventObj.quote.changePercent}</p>
-      <p>Actual EPS: {eventObj.actualEPS}</p>
+      <p>{eventObj.headline}</p>
       <p>Consensus EPS: {eventObj.consensusEPS}</p>
       <p># of Estimates: {eventObj.numberOfEstimates}</p>
       <p>Year Ago EPS: {eventObj.yearAgo}</p>

@@ -115,6 +115,8 @@ class Stock extends Component {
         {this.state.symbol} Show Page  <img src={this.state.logo} alt="" />
 
         <div name="live-stock-info">
+          <button name="watchlist-star"
+            onClick={() => this.props.handleStarClick(this.state.stock.symbol, this.state.stock.companyName, this.state.stock.latestPrice)}>⭐️</button>
           <h5>{this.state.stock.companyName}</h5>
           <h3>${this.state.stock.latestPrice}</h3>
           <i>{this.state.stock.change}</i>

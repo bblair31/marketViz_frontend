@@ -3,7 +3,7 @@ import MarketStatus from '../components/MarketStatus'
 import MarketCard from '../components/MarketCard'
 
 const renderMarketCards = (marketInfo) => {
-  if (marketInfo !== []) {
+  if (!!marketInfo) {
     return marketInfo.map(market => {
       return <MarketCard key={market.mic} market={market} />
     })

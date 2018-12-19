@@ -16,7 +16,6 @@ class Dashboard extends Component {
   }
 
   componentDidMount() {
-    //// // TODO:  Refactor
     this.setGainers()
     this.setLosers()
     this.setMarketNews()
