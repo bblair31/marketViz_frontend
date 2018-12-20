@@ -7,7 +7,7 @@ import Stock from './containers/Stock'
 import WelcomeContainer from './containers/WelcomeContainer'
 import SearchBar from './components/SearchBar'
 import NotFound from './components/NotFound'
-// import Watchlist from './containers/Watchlist'
+import WatchlistContainer from './containers/WatchlistContainer'
 // import withAuth from './hocs/withAuth'
 
 class App extends Component {
@@ -36,6 +36,7 @@ class App extends Component {
   componentWillUnmount() {
     clearInterval(this.marketInfoTimer)
     clearInterval(this.sectorInfoTimer)
+    clearInterval(this.setWatchlistTimer)
     clearInterval(this.stockDictionaryTimer)
   }
 
@@ -54,6 +55,8 @@ class App extends Component {
   setWatchlist() {
     if (this.state.user) {
       Adapter.getWatchlist()
+        .then(data => this.setState({ watchlist: data }))
+        .catch(e => console.log(e))
     }
   }
 
@@ -111,6 +114,11 @@ class App extends Component {
           <Route path="/dashboard" render={() => <Dashboard
             marketInfo={this.state.marketInfo}
             sectorInfo={this.state.sectorInfo}
+            />}
+          />
+          <Route path="/watchlist" render={() => <WatchlistContainer
+            watchlist={this.state.watchlist}
+            marketInfo={this.state.marketInfo}
             />}
           />
           <Route exact path="/stocks/:symbol" render={routerProps => <Stock

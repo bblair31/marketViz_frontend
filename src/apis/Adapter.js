@@ -144,14 +144,43 @@ export default class Adapter {
   }
 
   static getWatchlist() {
-    fetch(`${BASE_URL}/portfolio`, {
+    return fetch(`${BASE_URL}/watchlist`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${localStorage.getItem('jwt')}`
       }
     })
     .then(res => res.json())
-    .then(console.log)
+  }
+
+  static getWatchlistNews() {
+    return fetch(`${BASE_URL}/watchlistnews`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`
+      }
+    })
+    .then(res => res.json())
+  }
+
+  static getWatchlistPeers() {
+    return fetch(`${BASE_URL}/watchlistpeers`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`
+      }
+    })
+    .then(res => res.json())
+  }
+
+  static getWatchlistCharts(timeframe) {
+    return fetch(`${BASE_URL}/watchlistcharts/${timeframe}`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`
+      }
+    })
+    .then(res => res.json())
   }
 
 } // End of Adapter Class
