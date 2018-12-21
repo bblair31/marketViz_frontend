@@ -8,7 +8,8 @@ import WelcomeContainer from './containers/WelcomeContainer'
 import SearchBar from './components/SearchBar'
 import NotFound from './components/NotFound'
 import WatchlistContainer from './containers/WatchlistContainer'
-// import withAuth from './hocs/withAuth'
+import Crypto from './containers/Crypto'
+import Nav from './components/Nav'
 
 class App extends Component {
   state = {
@@ -101,9 +102,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <Nav user={this.state.user} />
         <button onClick={this.handleLogout}>Logout</button>
         <SearchBar stockDictionary={this.state.stockDictionary} />
-        {/* <Watchlist watchlistQuotes={this.state.watchlistQuotes} /> */}
+
 
         <Switch>
           <Route exact path="/" render={() => <Redirect to="/dashboard" />} />
@@ -119,6 +121,7 @@ class App extends Component {
           <Route path="/watchlist" render={() => <WatchlistContainer
             watchlist={this.state.watchlist}
             marketInfo={this.state.marketInfo}
+            sectorInfo={this.state.sectorInfo}
             />}
           />
           <Route exact path="/stocks/:symbol" render={routerProps => <Stock
@@ -128,6 +131,8 @@ class App extends Component {
             key={routerProps.match.params.symbol}
             handleStarClick={this.handleStarClick}
            />}
+          />
+          <Route path="/crypto" render={() => <Crypto />}
           />
          <Route component={NotFound} />
 

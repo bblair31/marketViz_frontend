@@ -26,6 +26,7 @@ import { Line } from 'react-chartjs-2'
 const mapLabels = (chartData) => {
   return chartData.map(data => data.label)
 }
+
 const mapData = (chartData) => {
   return chartData.map(data => {
     if (data.close > 0) {

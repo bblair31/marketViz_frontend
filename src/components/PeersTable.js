@@ -7,8 +7,8 @@ const mapHeaders = () => {
 }
 
 const mapRows = (peers) => {
-  return peers.map(peer => {
-    if (peers) {
+  if (!!peers) {
+    return peers.map(peer => {
       return (
         <tr key={peer.symbol}>
           <td>{peer.symbol}</td>
@@ -27,10 +27,10 @@ const mapRows = (peers) => {
           <td>{peer.ytdChange}</td>
         </tr>
       )
-    } else {
-      return null
-    }
-  })
+    })
+  } else {
+    return null
+  }
 }
 
 const PeersTable = ({ peers }) => {

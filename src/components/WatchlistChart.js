@@ -1,49 +1,52 @@
 import React from 'react'
-import { Line } from 'react-chartjs-2'
+import { Pie } from 'react-chartjs-2'
 
-const mapLabels = (firstChart) => {
-  if (firstChart) {
-    debugger
-    return firstChart.map(data => data.label)
-  }
+const mapSectorLabels = (watchlist) => {
+  let sectors = watchlist.map(stock => stock.sector)
+  return [...new Set(sectors)]
 }
-const mapData = (charts) => {
-  return charts.map(data => {
-    if (data.close > 0) {
-      return data.close
-    } else {
-      return null
-    }
+
+const countWatchlistMatches = (sector, watchlist) => {
+  let count = 0
+  watchlist.map(stock => {
+    return sector === stock.sector ? count++ : null
+  })
+  return count
+}
+
+const mapChartData = (watchlist) => {
+  let sectors = mapSectorLabels(watchlist)
+
+  return sectors.map(sector => {
+    return countWatchlistMatches(sector, watchlist)
   })
 }
 
-const getDataObj = (charts) => {
-  return {
-        labels: mapLabels(charts[0]),
-        datasets: [{
-          label: "Price",
-          fill: false,
-          spanGaps: true,
-          lineTension: 0.2,
-          pointRadius: 0,
-          pointHitRadius: 10,
-          backgroundColor: 'rgb(255, 99, 132)',
-          borderColor: 'rgb(255, 99, 132)',
-          data: mapData(charts),
-        }]
-      }
+const getDataObj = (watchlist) => {
+  return (
+    {
+    	labels: mapSectorLabels(watchlist),
+    	datasets: [{
+    		data: mapChartData(watchlist),
+    		backgroundColor: [
+    		'#FF6384',
+    		'#36A2EB',
+    		'#FFCE56'
+    		],
+    		hoverBackgroundColor: [
+    		'#FF6384',
+    		'#36A2EB',
+    		'#FFCE56'
+    		]
+    	}]
     }
+  )
+}
 
-
-const WatchlistChart = ( { charts, changeChartTimeframe }) => {
+const WatchlistChart = ({ watchlist, sectorInfo }) => {
   return (
     <React.Fragment>
-      <Line data={getDataObj(charts)} />
-      <button onClick={changeChartTimeframe} value="1d">Day</button>
-      <button onClick={changeChartTimeframe} value="1m">Month</button>
-      <button onClick={changeChartTimeframe} value="ytd">YTD</button>
-      <button onClick={changeChartTimeframe} value="2y">2 Year</button>
-      <button onClick={changeChartTimeframe} value="5y">5 Year</button>
+      <Pie data={getDataObj(watchlist, sectorInfo)} />
     </React.Fragment>
   )
 }

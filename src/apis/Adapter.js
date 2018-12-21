@@ -143,6 +143,11 @@ export default class Adapter {
       .then(res => res.json())
   }
 
+  static getCrypto() {
+    return fetch(`${BASE_URL}/crypto`)
+      .then(res => res.json())
+  }
+
   static getWatchlist() {
     return fetch(`${BASE_URL}/watchlist`, {
       method: "GET",
@@ -172,15 +177,4 @@ export default class Adapter {
     })
     .then(res => res.json())
   }
-
-  static getWatchlistCharts(timeframe) {
-    return fetch(`${BASE_URL}/watchlistcharts/${timeframe}`, {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem('jwt')}`
-      }
-    })
-    .then(res => res.json())
-  }
-
 } // End of Adapter Class
