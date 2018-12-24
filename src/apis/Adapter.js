@@ -34,13 +34,12 @@ export default class Adapter {
     .then(console.log)
   }
 
-  static addTransaction(foundStock, latestPrice, username) {
+  static addTransaction(foundStock, latestPrice) {
     let data = {
       symbol: foundStock.symbol,
       company_name: foundStock.name,
       iex_id: parseInt(foundStock.iexId),
       price_bought: latestPrice,
-      username: username
     }
 
     return fetch(`${BASE_URL}/transactions`, {
@@ -51,6 +50,19 @@ export default class Adapter {
       },
       body: JSON.stringify(data)
     })
+      .then(res => res.json())
+  }
+
+  static destroyTransaction(symbol) {
+    return fetch(`${BASE_URL}/transactions/${symbol}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+        "Content-Type": "application/json; charset=utf-8"
+      },
+      body: JSON.stringify(symbol)
+    })
+      .then(res => res.json())
   }
 
   static getMarkets() {

@@ -92,10 +92,23 @@ class App extends Component {
   }
 
   handleStarClick = (symbol, companyName, latestPrice) => {
-    let foundStock = this.state.stockDictionary.find(stock => stock.symbol === symbol)
-    Adapter.addTransaction(foundStock, latestPrice, this.state.user.username)
-      .then(res => res.json())
-      .then(res => this.setState({ watchlist: res }))
+    if (!this.state.watchlist.find(stock => stock.symbol === symbol)) {
+      let foundStock = this.state.stockDictionary.find(stock => stock.symbol === symbol)
+
+      Adapter.addTransaction(foundStock, latestPrice)
+        .then(res => this.setState({ watchlist: res }))
+    } else {
+      Adapter.destroyTransaction(symbol)
+        .then(res => {
+          if (res.ok) {
+            this.removeFromWatchlist(symbol)
+          }
+        })
+    }
+  }
+
+  removeFromWatchlist = (symbol) => {
+    this.setState(prevState => prevState.watchlist.filter(stock => stock.symbol !== symbol))
   }
 
 
@@ -116,12 +129,14 @@ class App extends Component {
           <Route path="/dashboard" render={() => <Dashboard
             marketInfo={this.state.marketInfo}
             sectorInfo={this.state.sectorInfo}
+            handleStarClick={this.handleStarClick}
             />}
           />
           <Route path="/watchlist" render={() => <WatchlistContainer
             watchlist={this.state.watchlist}
             marketInfo={this.state.marketInfo}
             sectorInfo={this.state.sectorInfo}
+            handleStarClick={this.handleStarClick}
             />}
           />
           <Route exact path="/stocks/:symbol" render={routerProps => <Stock
@@ -135,7 +150,6 @@ class App extends Component {
           <Route path="/crypto" render={() => <Crypto />}
           />
          <Route component={NotFound} />
-
         </Switch>
       </div>
     )

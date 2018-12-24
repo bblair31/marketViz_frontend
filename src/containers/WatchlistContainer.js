@@ -46,7 +46,10 @@ class WatchlistContainer extends Component {
           watchlist={this.props.watchlist}
           sectorInfo={this.props.sectorInfo}
         />
-        <Watchlist watchlist={this.props.watchlist} />
+        <Watchlist
+          watchlist={this.props.watchlist}
+          handleStarClick={this.props.handleStarClick}
+        />
         <NewsContainer news={this.state.news} />
         <PeersTable peers={this.state.peers} />
       </div>

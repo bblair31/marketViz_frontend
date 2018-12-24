@@ -8,6 +8,7 @@ import PeersTable from '../components/PeersTable'
 import BalanceSheet from '../components/BalanceSheet'
 import KeyStats from '../components/KeyStats'
 import StockChart from '../components/StockChart'
+import LiveStockDetails from '../components/LiveStockDetails'
 
 class Stock extends Component {
 
@@ -114,15 +115,10 @@ class Stock extends Component {
 
         {this.state.symbol} <img src={this.state.logo} alt="" />
 
-        <div name="live-stock-info">
-          <button name="watchlist-star"
-            onClick={() => this.props.handleStarClick(this.state.stock.symbol, this.state.stock.companyName, this.state.stock.latestPrice)}>⭐️</button>
-          <h5>{this.state.stock.companyName}</h5>
-          <h3>Current Price: ${this.state.stock.latestPrice}</h3>
-          <i>Change: {this.state.stock.change}</i>
-          <p>% Change: {(this.state.stock.changePercent * 100).toFixed(2)}%</p>
-          <i>Updated {this.state.stock.latestTime}</i>
-        </div>
+        <LiveStockDetails
+          stock={this.state.stock}
+          handleStarClick={this.props.handleStarClick}
+         />
 
         <StockChart
           chartData={this.state.chart}

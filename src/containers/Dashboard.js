@@ -79,6 +79,7 @@ class Dashboard extends Component {
         <GainerLoserContainer
           gainers={this.state.gainers}
           losers={this.state.losers}
+          handleStarClick={this.props.handleStarClick}
          />
          <NewsContainer
            news={this.state.marketNews['SPY'] ? Object.values(this.state.marketNews['SPY']).flat() : this.state.marketNews}
