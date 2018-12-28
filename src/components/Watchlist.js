@@ -13,7 +13,6 @@ const mapWatchlist = (watchlist, handleStarClick) => {
 
 
 const Watchlist = ({ watchlist, handleStarClick }) => {
-  console.log(watchlist)
   return (
     <div className="watchlist" style={{display: "inline-block"}}>
       {mapWatchlist(watchlist, handleStarClick)}

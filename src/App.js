@@ -10,6 +10,7 @@ import NotFound from './components/NotFound'
 import WatchlistContainer from './containers/WatchlistContainer'
 import Crypto from './containers/Crypto'
 import Nav from './components/Nav'
+import { Segment } from 'semantic-ui-react'
 
 class App extends Component {
   state = {
@@ -114,11 +115,13 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <Nav user={this.state.user} />
-        <button onClick={this.handleLogout}>Logout</button>
-        <SearchBar stockDictionary={this.state.stockDictionary} />
-
+      <Segment>
+        <Nav user={this.state.user} handleLogout={this.handleLogout} />
+        
+        <SearchBar
+          stockDictionary={this.state.stockDictionary}
+          user={this.state.user}
+        />
 
         <Switch>
           <Route exact path="/" render={() => <Redirect to="/dashboard" />} />
@@ -151,7 +154,7 @@ class App extends Component {
           />
          <Route component={NotFound} />
         </Switch>
-      </div>
+      </Segment>
     )
   }
 }

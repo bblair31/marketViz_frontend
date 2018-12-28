@@ -41,6 +41,7 @@ class SearchBar extends Component {
 
   render() {
     return (
+      !!this.props.user ?
       <div className="search-bar" style={{display: "inline-block"}}>
         <form onSubmit={this.handleSearchSubmit}>
           <input
@@ -52,6 +53,8 @@ class SearchBar extends Component {
         </form>
         {this.renderSuggestions()}
       </div>
+      :
+      null
     )
   }
 } /// End of SearchBar Class

@@ -2,7 +2,7 @@ import React from 'react';
 import StockCard from '../components/StockCard'
 
 const renderGLList = (stocks, handleStarClick) => {
-  if (stocks) {
+  if (!!stocks) {
     return stocks.map(stock => {
       return <StockCard
         key={stock.symbol}

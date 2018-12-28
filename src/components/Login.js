@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Adapter from '../apis/Adapter'
+import { Button, Form } from 'semantic-ui-react'
 
 class Login extends Component {
   state = {
@@ -19,24 +20,35 @@ class Login extends Component {
           alert("Invalid login")
         }
       })
-      .then(res => this.props.successfulLogin(res))
+      .then(res => res ? this.props.successfulLogin(res) : null)
       .then(res => this.setState({ username: "", password: ""}))
   }
 
   render() {
     return (
-      <div className="login" style={{display: "inline-block"}}>
-        LOGIN
-        <form className="login-form" onSubmit={this.handleSubmit} >
-          <label>Username: </label>
-          <input type="text" name="username" value={this.state.username} onChange={this.handleChange} />
+      <Form className="login-form" onSubmit={this.handleSubmit} >
+        <Form.Input
+          type="text"
+          name="username"
+          value={this.state.username}
+          onChange={this.handleChange}
+          icon='user'
+          iconPosition='left'
+          label='Username'
+          placeholder='Username'
+        />
 
-          <label>Password: </label>
-          <input type="password" name="password" value={this.state.password} onChange={this.handleChange} />
+        <Form.Input
+          name="password"
+          value={this.state.password}
+          onChange={this.handleChange}
+          icon='lock'
+          iconPosition='left'
+          label='Password'
+          type='password' />
 
-          <button type="submit" value="submit">Login</button>
-        </form>
-      </div>
+        <Button content='Login' type="submit" value="submit" primary/>
+      </Form>
     )
   }
 } /// End of Login Class
