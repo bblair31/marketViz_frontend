@@ -23,7 +23,8 @@ class Stock extends Component {
     companyInfo: [],
     earnings: [],
     keyStats: [],
-    logo: null
+    logo: null,
+    active: false
   }
 
   componentDidMount() {
@@ -108,16 +109,26 @@ class Stock extends Component {
     this.setState({ chartTimeframe: event.target.value }, () => this.setChart())
   }
 
+  handleStarClick = (symbol, companyName, latestPrice) => {
+    this.setState(prevState => {
+      return {
+        active: !prevState.active
+      }
+    })
+    this.props.handleStarClick(symbol, companyName, latestPrice)
+  }
+
   render() {
     return (
       <div className="stock">
         <MarketContainer marketInfo={this.props.marketInfo}/>
 
-        {this.state.symbol} <img src={this.state.logo} alt="" />
+        {this.state.symbol.toUpperCase()} <img src={this.state.logo} alt="" />
 
         <LiveStockDetails
           stock={this.state.stock}
-          handleStarClick={this.props.handleStarClick}
+          handleStarClick={this.handleStarClick}
+          active={this.state.active}
          />
 
         <StockChart

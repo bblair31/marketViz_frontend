@@ -1,11 +1,13 @@
-import React from 'react';
+import React from 'react'
+import { Button, Icon } from 'semantic-ui-react'
 
-const LiveStockDetails = ({ stock, handleStarClick }) => {
+const LiveStockDetails = ({ stock, handleStarClick, active }) => {
   return (
     <div name="live-stock-info">
-      <button name="watchlist-star"
-        onClick={() => handleStarClick(stock.symbol, stock.companyName, stock.latestPrice)}>⭐️
-      </button>
+      <Button icon circular compact color='black' name="watchlist-star"
+        onClick={() => handleStarClick(stock.symbol, stock.companyName, stock.latestPrice)}>
+        <Icon name='star' color={active ? 'blue' : 'grey'} />
+      </Button>
 
       <h5>{stock.companyName}</h5>
       <h3>Current Price: ${stock.latestPrice}</h3>

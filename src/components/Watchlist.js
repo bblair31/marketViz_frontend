@@ -7,6 +7,7 @@ const mapWatchlist = (watchlist, handleStarClick) => {
       key={stock.symbol}
       stock={stock}
       handleStarClick={handleStarClick}
+      active='true'
     />
   })
 }

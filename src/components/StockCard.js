@@ -1,13 +1,21 @@
 import React from 'react'
 import { Button, Icon } from 'semantic-ui-react'
 
-const StockCard = ({ stock, handleStarClick }) => {
+const renderStarButton = (stock, handleStarClick, active) => {
+  if (!!active) {
+    return (
+      <Button icon circular compact color='black' name="watchlist-star"
+      onClick={() => handleStarClick(stock.symbol, stock.companyName, stock.latestPrice)}>
+      <Icon name='star' color={active ? 'blue' : 'grey'} />
+    </Button>
+    )
+  }
+}
+
+const StockCard = ({ stock, handleStarClick, active }) => {
   return (
     <div className="stock-card" >
-      <Button icon active circular compact name="watchlist-star"
-        onClick={() => handleStarClick(stock.symbol, stock.companyName, stock.latestPrice)}>
-        <Icon name='star' color='blue' />
-      </Button>
+      {renderStarButton(stock, handleStarClick, active)}
 
       <b>{stock.symbol}</b>
       <p>{stock.companyName.substring(0,20)}</p>

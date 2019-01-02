@@ -18,6 +18,7 @@ class App extends Component {
     stockDictionary: [],
     query: "",
     watchlist: [],
+    watchlistSymbols: [],
     user: null,
   }
 
@@ -112,7 +113,6 @@ class App extends Component {
     this.setState(prevState => prevState.watchlist.filter(stock => stock.symbol !== symbol))
   }
 
-
   render() {
     return (
       <Segment>
@@ -132,6 +132,7 @@ class App extends Component {
             marketInfo={this.state.marketInfo}
             sectorInfo={this.state.sectorInfo}
             handleStarClick={this.handleStarClick}
+            watchlist={this.state.watchlist}
             />}
           />
           <Route path="/watchlist" render={() => <WatchlistContainer
@@ -147,6 +148,7 @@ class App extends Component {
             sectorInfo={this.state.sectorInfo}
             key={routerProps.match.params.symbol}
             handleStarClick={this.handleStarClick}
+            watchlist={this.state.watchlist}
            />}
           />
           <Route path="/crypto" render={() => <Crypto />}
