@@ -5,6 +5,7 @@ import SectorContainer from './SectorContainer'
 import GainerLoserContainer from './GainerLoserContainer'
 import NewsContainer from './NewsContainer'
 import EventsContainer from './EventsContainer'
+import WatchlistBar from '../components/WatchlistBar'
 
 class Dashboard extends Component {
   state = {
@@ -72,6 +73,10 @@ class Dashboard extends Component {
       <div className="dashboard">
         <MarketContainer
           marketInfo={this.props.marketInfo}
+        />
+        <WatchlistBar
+          watchlist={this.props.watchlist}
+          handleStarClick={this.props.handleStarClick}
         />
         <SectorContainer
           sectorInfo={this.props.sectorInfo}
