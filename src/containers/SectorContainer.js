@@ -1,4 +1,5 @@
-import React from 'react';
+import React from 'react'
+import { Grid } from 'semantic-ui-react'
 import SectorCard from '../components/SectorCard'
 
 const renderSectorCards = (sectorInfo) => {
@@ -10,9 +11,11 @@ const renderSectorCards = (sectorInfo) => {
 
 const SectorContainer = (props) => {
   return (
-    <div className="sector-container" style={{border: '5px solid green'}}>
-      <h3>SECTORS</h3>
-      {renderSectorCards(props.sectorInfo)}
+    <div className="container">
+      <h2 style={{textAlign: "left"}}>Sectors</h2><br></br>
+      <Grid divided padded centered>
+        {renderSectorCards(props.sectorInfo)}
+    </Grid>
     </div>
   )
 } /// End of SectorContainer

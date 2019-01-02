@@ -1,3 +1,24 @@
-.App {
+.app-container {
+  margin: auto;
   text-align: center;
+}
+
+.market-container {
+  margin: auto;
+  width: 60%;
+}
+
+.container {
+  margin: 25px auto 25px auto;
+  width: 80%;
+  background-color: #424549;
+}
+
+.stock {
+  margin: 25px auto 25px auto;
+  width: 80%;
+}
+
+.sector-card {
+  margin: 10px;
 }

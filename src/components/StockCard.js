@@ -19,7 +19,7 @@ const StockCard = ({ stock, handleStarClick, active }) => {
 
       <b>{stock.symbol}</b>
       <p>{stock.companyName.substring(0,20)}</p>
-      <p>{(stock.changePercent * 100).toFixed(2)}%</p>
+      <p style={{color: (stock.changePercent >= 0 ? "green" : "red")}}>{(stock.changePercent * 100).toFixed(2)}%</p>
       <p>${(stock.latestPrice * 1).toFixed(2)}</p>
     </div>
   )

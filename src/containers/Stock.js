@@ -118,33 +118,39 @@ class Stock extends Component {
     this.props.handleStarClick(symbol, companyName, latestPrice)
   }
 
+  checkActive = () => {
+    return !!(this.props.watchlist.filter(stock => stock.symbol === this.state.symbol).length > 0)
+  }
+
   render() {
     return (
-      <div className="stock">
+      <React.Fragment>
         <MarketContainer marketInfo={this.props.marketInfo}/>
+        <div className="stock">
 
-        {this.state.symbol.toUpperCase()} <img src={this.state.logo} alt="" />
+          <img src={this.state.logo} alt="" style={{borderRadius: '25px'}} />
 
-        <LiveStockDetails
-          stock={this.state.stock}
-          handleStarClick={this.handleStarClick}
-          active={this.state.active}
-         />
+          <LiveStockDetails
+            stock={this.state.stock}
+            handleStarClick={this.handleStarClick}
+            active={this.checkActive()}
+           />
 
-        <StockChart
-          chartData={this.state.chart}
-          changeChartTimeframe={this.changeChartTimeframe}
-        />
-        <StockDetailsContainer
-          companyInfo={this.state.companyInfo}
-          stock={this.state.stock}
-        />
-        <KeyStats keyStats={this.state.keyStats}/>
-        <EarningsContainer earnings={this.state.earnings} />
-        <NewsContainer news={this.state.news}/>
-        <PeersTable peers={this.state.peers}/>
-        <BalanceSheet balanceSheet={this.state.balanceSheet}/>
-      </div>
+          <StockChart
+            chartData={this.state.chart}
+            changeChartTimeframe={this.changeChartTimeframe}
+          />
+          <StockDetailsContainer
+            companyInfo={this.state.companyInfo}
+            stock={this.state.stock}
+          />
+          <KeyStats keyStats={this.state.keyStats}/>
+          <EarningsContainer earnings={this.state.earnings} />
+          <NewsContainer news={this.state.news}/>
+          <PeersTable peers={this.state.peers}/>
+          <BalanceSheet balanceSheet={this.state.balanceSheet}/>
+        </div>
+      </React.Fragment>
     )
   }
 } /// End of Stock Class

@@ -115,7 +115,7 @@ class App extends Component {
 
   render() {
     return (
-      <Segment inverted textAlign="center">
+      <Segment className="app-container" inverted>
         <Nav
           user={this.state.user}
           handleLogout={this.handleLogout}
