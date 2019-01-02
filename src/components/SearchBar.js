@@ -31,7 +31,7 @@ class SearchBar extends Component {
   }
 
   handleSearchChange = event => {
-    this.setState({ query: event.target.value})
+    this.setState({ query: event.target.value.toLowerCase()})
   }
 
   handleClick = event => {

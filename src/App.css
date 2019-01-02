@@ -29,12 +29,15 @@
 }
 
 .popup-text {
+  height: 100px;
+  overflow: scroll;
   position: absolute;
+  opacity: 10;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: blue;
+  background-color: lightblue;
   z-index: 1;
   color: white;
 }

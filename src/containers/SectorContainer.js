@@ -15,7 +15,7 @@ const SectorContainer = (props) => {
       <h2 style={{textAlign: "left"}}>Sectors</h2><br></br>
       <Grid divided padded centered>
         {renderSectorCards(props.sectorInfo)}
-    </Grid>
+      </Grid>
     </div>
   )
 } /// End of SectorContainer
