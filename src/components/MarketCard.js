@@ -15,11 +15,11 @@ const checkMarketName = symbol => {
 
 const MarketCard = ({ market }) => {
   return (
-    <div className="market-card" style={{display: "inline-block"}}>
-      <p>{checkMarketName(market.symbol)}</p>
-      <p>${(market.latestPrice).toFixed(2)}</p>
-      <p>${(market.change).toFixed(2)}</p>
-      <p>{(market.changePercent * 100).toFixed(2)}%</p>
+    <div className="market-card">
+      <h4 style={{color: (market.changePercent >= 0 ? "green" : "red")}}>
+        {checkMarketName(market.symbol)}<br></br>
+        {(market.changePercent * 100).toFixed(2)}%
+      </h4>
     </div>
   )
 } /// End of Dashboard Class
