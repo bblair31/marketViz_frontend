@@ -7,8 +7,6 @@ class SearchBar extends Component {
     suggestions: []
   }
 
-
-
   renderSuggestions = () => {
     if (this.state.query.length >= 3) {
       return this.props.stockDictionary.map(stockObj => {
@@ -42,19 +40,19 @@ class SearchBar extends Component {
   render() {
     return (
       !!this.props.user ?
-      <div className="search-bar" style={{display: "inline-block"}}>
-        <form onSubmit={this.handleSearchSubmit}>
-          <input
-            value={this.state.query}
-            placeholder="Search by Ticker or Company Name"
-            onChange={this.handleSearchChange}
-            >
-          </input>
-        </form>
-        {this.renderSuggestions()}
-      </div>
-      :
-      null
+        <div className="search-bar" >
+          <form onSubmit={this.handleSearchSubmit}>
+            <input
+              value={this.state.query}
+              placeholder="Search by Ticker or Company Name"
+              onChange={this.handleSearchChange}
+              >
+            </input>
+          </form>
+          {this.renderSuggestions()}
+        </div>
+        :
+        null
     )
   }
 } /// End of SearchBar Class

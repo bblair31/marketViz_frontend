@@ -5,7 +5,6 @@ import { Route, withRouter, Switch, Redirect } from 'react-router-dom'
 import Dashboard from './containers/Dashboard'
 import Stock from './containers/Stock'
 import WelcomeContainer from './containers/WelcomeContainer'
-import SearchBar from './components/SearchBar'
 import NotFound from './components/NotFound'
 import WatchlistContainer from './containers/WatchlistContainer'
 import Crypto from './containers/Crypto'
@@ -116,11 +115,10 @@ class App extends Component {
   render() {
     return (
       <Segment>
-        <Nav user={this.state.user} handleLogout={this.handleLogout} />
-        
-        <SearchBar
-          stockDictionary={this.state.stockDictionary}
+        <Nav
           user={this.state.user}
+          handleLogout={this.handleLogout}
+          stockDictionary={this.state.stockDictionary}
         />
 
         <Switch>

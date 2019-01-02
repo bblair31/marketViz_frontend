@@ -8,9 +8,9 @@ const mapHeaders = () => {
 
 const mapRows = (peers) => {
   if (!!peers) {
-    return peers.map(peer => {
+    return peers.map((peer, i) => {
       return (
-        <tr key={peer.symbol}>
+        <tr key={i}>
           <td>{peer.symbol}</td>
           <td>{peer.companyName}</td>
           <td>{peer.sector}</td>
