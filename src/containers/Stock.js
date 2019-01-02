@@ -119,7 +119,11 @@ class Stock extends Component {
   }
 
   checkActive = () => {
-    return !!(this.props.watchlist.filter(stock => stock.symbol === this.state.symbol).length > 0)
+    if (!!this.props.watchlist.length > 0) {
+      return !!(this.props.watchlist.filter(stock => stock.symbol === this.state.symbol.toUpperCase()).length > 0)
+    } else {
+      return false
+    }
   }
 
   render() {

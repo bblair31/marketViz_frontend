@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
+import { Input } from 'semantic-ui-react'
 
 class SearchBar extends Component {
   state = {
@@ -8,16 +9,24 @@ class SearchBar extends Component {
   }
 
   renderSuggestions = () => {
-    if (this.state.query.length >= 3) {
-      return this.props.stockDictionary.map(stockObj => {
-        if (stockObj.symbol.toLowerCase().includes(this.state.query) || stockObj.name.toLowerCase().includes(this.state.query)) {
-          return <div key={stockObj.symbol} onClick={this.handleClick}>
-            {stockObj.symbol} - {stockObj.name}
+    if (this.state.query.length >= 2) {
+      return(
+        <div className="search-suggestions">
+          <div className="popup-text">
+            {this.props.stockDictionary.map(stockObj => {
+              if (stockObj.symbol.toLowerCase().includes(this.state.query) || stockObj.name.toLowerCase().includes(this.state.query)) {
+                return (
+                  <div className="search" key={stockObj.symbol} onClick={this.handleClick}>
+                    {stockObj.symbol} - {stockObj.name}
+                  </div>
+                )
+              } else {
+                return null
+              }
+            })}
           </div>
-        } else {
-          return null
-        }
-      })
+        </div>
+      )
     }
   }
 
@@ -40,14 +49,15 @@ class SearchBar extends Component {
   render() {
     return (
       !!this.props.user ?
-        <div className="search-bar" >
+        <div className="search-bar">
           <form onSubmit={this.handleSearchSubmit}>
-            <input
+            <Input
+              icon="search"
               value={this.state.query}
               placeholder="Search by Ticker or Company Name"
               onChange={this.handleSearchChange}
               >
-            </input>
+            </Input>
           </form>
           {this.renderSuggestions()}
         </div>

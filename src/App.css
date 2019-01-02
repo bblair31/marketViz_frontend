@@ -22,3 +22,19 @@
 .sector-card {
   margin: 10px;
 }
+
+.search-suggestions {
+  position: relative;
+  z-index: 1;
+}
+
+.popup-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: blue;
+  z-index: 1;
+  color: white;
+}

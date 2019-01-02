@@ -23,7 +23,7 @@ const renderGLList = (stocks, handleStarClick) => {
 const GainerLoserContainer = ({ gainers, losers, handleStarClick }) => {
   return (
     <div className="container">
-      <h2>ON THE DAY</h2>
+      <h2>TODAY'S MOVERS</h2>
       <Segment placeholder inverted style={{backgroundColor: "#424549"}}>
         <Grid columns={2}>
           <Grid.Column>

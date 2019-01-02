@@ -2,7 +2,6 @@ import React from 'react'
 import { Button, Icon } from 'semantic-ui-react'
 
 const LiveStockDetails = ({ stock, handleStarClick, active }) => {
-  console.log(active)
   return (
     <div name="live-stock-info">
       <Button icon circular compact color='black' name="watchlist-star"
