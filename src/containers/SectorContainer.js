@@ -12,7 +12,7 @@ const renderSectorCards = (sectorInfo) => {
 const SectorContainer = (props) => {
   return (
     <div className="container">
-      <h2 style={{textAlign: "left"}}>Sectors</h2><br></br>
+      <h2>SECTORS</h2><br></br>
       <Grid divided padded centered>
         {renderSectorCards(props.sectorInfo)}
       </Grid>

@@ -4,7 +4,7 @@ import Watchlist from './Watchlist'
 const WatchlistBar = ({ watchlist, handleStarClick }) => {
   return (
     <div className="container">
-      <h2 style={{textAlign: "left"}}>My Watchlist</h2>
+      <h2>MY WATCHLIST</h2>
       <Watchlist
         watchlist={watchlist}
         handleStarClick={handleStarClick}

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import Adapter from '../apis/Adapter'
 import MarketContainer from './MarketContainer'
 import SectorContainer from './SectorContainer'
