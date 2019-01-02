@@ -6,7 +6,7 @@ const LiveStockDetails = ({ stock, handleStarClick, active }) => {
     <div name="live-stock-info">
       <Button icon circular compact color='black' name="watchlist-star"
         onClick={() => handleStarClick(stock.symbol, stock.companyName, stock.latestPrice)}>
-        <Icon name='star' color={active ? 'blue' : 'grey'} />
+        <Icon name='star' size="huge" color={active ? 'blue' : 'grey'} />
       </Button>
 
       <h1>{stock.companyName}</h1>

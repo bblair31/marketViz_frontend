@@ -1,4 +1,5 @@
-import React from 'react';
+import React from 'react'
+import { Grid } from 'semantic-ui-react'
 import NewsCard from '../components/NewsCard'
 
 const renderNewsCards = (news) => {
@@ -10,9 +11,11 @@ const renderNewsCards = (news) => {
 
 const NewsContainer = ( { news }) => {
   return (
-    <div className="news-container" style={{border: '5px solid green'}}>
-      <h3>NEWS</h3>
-      {renderNewsCards(news)}
+    <div className="container">
+      <h2>NEWS</h2>
+      <Grid divided padded centered className="news-container">
+        {renderNewsCards(news)}
+      </Grid>
     </div>
   )
 } /// End of NewsContainer

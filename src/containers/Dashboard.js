@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Adapter from '../apis/Adapter'
+import { Divider } from 'semantic-ui-react'
 import MarketContainer from './MarketContainer'
 import SectorContainer from './SectorContainer'
 import GainerLoserContainer from './GainerLoserContainer'
@@ -74,21 +75,26 @@ class Dashboard extends Component {
         <MarketContainer
           marketInfo={this.props.marketInfo}
         />
+        <Divider />
         <WatchlistBar
           watchlist={this.props.watchlist}
           handleStarClick={this.props.handleStarClick}
         />
+        <Divider />
         <SectorContainer
           sectorInfo={this.props.sectorInfo}
         />
+        <Divider />
         <GainerLoserContainer
           gainers={this.state.gainers}
           losers={this.state.losers}
           handleStarClick={this.props.handleStarClick}
          />
+         <Divider />
          <NewsContainer
            news={this.state.marketNews['SPY'] ? Object.values(this.state.marketNews['SPY']).flat() : this.state.marketNews}
          />
+         <Divider />
          <EventsContainer
            earningsToday={this.state.earningsToday}
            iposToday={this.state.iposToday}
