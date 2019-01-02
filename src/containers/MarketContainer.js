@@ -3,9 +3,10 @@ import MarketStatus from '../components/MarketStatus'
 import MarketCard from '../components/MarketCard'
 
 const renderMarketCards = (marketInfo) => {
+  console.log(marketInfo);
   if (!!marketInfo) {
     return marketInfo.map(market => {
-      return <MarketCard key={market.mic} market={market} />
+      return <MarketCard key={market.quote.symbol} market={market.quote} />
     })
   }
 }

@@ -3,13 +3,13 @@ import { NavLink, withRouter } from 'react-router-dom'
 import SearchBar from './SearchBar'
 import { Menu } from 'semantic-ui-react'
 
-
+const logo = 'https://tbncdn.freelogodesign.org/c86624f6-33f7-4d24-a887-26689680d596.png'
 
 const Nav = ({ user, handleLogout, stockDictionary }) => {
   return (
-    <Menu pointing inverted color='black' fixed="top" size="huge">
+    <Menu pointing inverted color='black' size="huge">
       <Menu.Item>
-        <img src='https://tbncdn.freelogodesign.org/c86624f6-33f7-4d24-a887-26689680d596.png' alt='' />
+        <img src={logo} alt='' />
       </Menu.Item>
       {user ? (
         <React.Fragment>

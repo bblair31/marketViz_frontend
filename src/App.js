@@ -43,7 +43,8 @@ class App extends Component {
 
   setMarketInfo() {
     Adapter.getMarkets()
-      .then(data => this.setState({ marketInfo: data }))
+      .then(data => Object.values(data))
+      .then(array => this.setState({ marketInfo: array }))
       .catch(e => console.log(e))
   }
 
