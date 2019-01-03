@@ -28,7 +28,7 @@ const GainerLoserContainer = ({ gainers, losers, handleStarClick }) => {
         <Grid columns={2}>
           <Grid.Column>
               <div className="gainers">
-                <h2 style={{backgroundColor: "grey"}}>Gainers:</h2>
+                <h2 style={{backgroundColor: "grey", color: "white"}}>Gainers:</h2>
                 <Card.Group itemsPerRow={3}>
                 {renderGLList(gainers, handleStarClick)}
                 </Card.Group>
@@ -37,7 +37,7 @@ const GainerLoserContainer = ({ gainers, losers, handleStarClick }) => {
           <Divider vertical></Divider>
           <Grid.Column>
           <div className="losers">
-            <h2 style={{backgroundColor: "grey"}}>Losers:</h2>
+            <h2 style={{backgroundColor: "grey", color: "white"}}>Losers:</h2>
             <Card.Group itemsPerRow={3}>
                {renderGLList(losers, handleStarClick)}
              </Card.Group>

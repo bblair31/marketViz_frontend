@@ -25,7 +25,12 @@ const getDailyPerformance = watchlist => {
     performance += stock.changePercent
     count += 1
   })
-  return ((performance/count)*100).toFixed(2)
+  
+  if (isNaN(((performance/count)*100).toFixed(2))) {
+    return "Loading"
+  } else {
+    return ((performance/count)*100).toFixed(2)
+  }
 }
 
 const getYtdPerformance = watchlist => {
@@ -36,7 +41,12 @@ const getYtdPerformance = watchlist => {
     performance += stock.ytdChange
     count += 1
   })
-  return ((performance/count)*100).toFixed(2)
+
+  if (isNaN(((performance/count)*100).toFixed(2))) {
+    return "Loading"
+  } else {
+    return ((performance/count)*100).toFixed(2)
+  }
 }
 
 
