@@ -3,16 +3,23 @@
   text-align: center;
 }
 
-.market-container {
-  margin: auto;
-  width: 60%;
-}
-
 .container {
   margin: 25px auto 25px auto;
   width: 80%;
   background-color: #424549;
 }
+
+.market-container {
+  margin: auto;
+  width: 60%;
+}
+
+.welcome-container {
+  margin: auto;
+  width: 80%;
+}
+
+
 
 .stock {
   margin: 25px auto 25px auto;

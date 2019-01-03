@@ -6,9 +6,9 @@ import { Divider, Grid, Segment, Header } from 'semantic-ui-react'
 const WelcomeContainer = ({ successfulLogin }) => {
   return (
     <div className="welcome-container">
-      <Header as='h1' textAlign='center' inverted color='blue'>
+      <Header as='h1' textAlign='center' inverted color='blue' style={{fontSize: "60px"}}>
         <img src='https://tbncdn.freelogodesign.org/c86624f6-33f7-4d24-a887-26689680d596.png' alt='' />
-        WELCOME TO MARKET-VIZ
+        Welcome to MarketViz
       </Header>
       <Segment placeholder>
         <Grid columns={2} relaxed='very' stackable>

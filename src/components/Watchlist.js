@@ -25,7 +25,7 @@ const getDailyPerformance = watchlist => {
     performance += stock.changePercent
     count += 1
   })
-  
+
   if (isNaN(((performance/count)*100).toFixed(2))) {
     return "Loading"
   } else {
@@ -53,8 +53,8 @@ const getYtdPerformance = watchlist => {
 const Watchlist = ({ watchlist, handleStarClick }) => {
   return (
     <div className="container">
-      <h2>Daily Performance: {getDailyPerformance(watchlist)}%</h2>
-      <h2>YTD Performance: {getYtdPerformance(watchlist)}%</h2>
+      <h3 style={{color: "#89d5ed"}}>Daily Performance: {getDailyPerformance(watchlist)}%</h3>
+      <h3 style={{color: "#89d5ed"}}>YTD Performance: {getYtdPerformance(watchlist)}%</h3>
       <Card.Group itemsPerRow={4}>
         {mapWatchlist(watchlist, handleStarClick)}
       </Card.Group>
