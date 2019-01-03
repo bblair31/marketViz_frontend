@@ -1,13 +1,12 @@
-import React from 'react';
+import React from 'react'
 
 const EarningsChart = ({ earning }) => {
   return (
-    <div className="earnings-chart">
-      {earning.EPSReportDate} -----
-      {earning.actualEPS}
-      {earning.fiscalPeriod}
-
-    </div>
+    <tr key={earning.EPSReportDate}>
+      <td>{earning.EPSReportDate}</td>
+      <td>{earning.actualEPS}</td>
+      <td>{earning.fiscalPeriod}</td>
+    </tr>
   )
 } /// End of Dashboard Class
 export default EarningsChart

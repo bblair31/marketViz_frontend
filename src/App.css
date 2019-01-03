@@ -55,11 +55,24 @@
   color: white;
 }
 
-.peers-table {
+.peers-table, .key-stats, .balance-sheet, .earnings-container {
   width: 100%;
-  margin: auto;
+  margin: 10px;
   text-align: center;
   overflow-x: scroll;
+  background-color: #424549;
+}
+
+.stock-chart {
+  margin: 75px;
+}
+
+.market-status {
+  font-size: 20px;
+}
+
+.stats-card, .profile-card {
+  margin: 5px;
 }
 
 body {

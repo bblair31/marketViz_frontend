@@ -1,4 +1,5 @@
-import React from 'react';
+import React from 'react'
+import { Table } from 'semantic-ui-react'
 
 const headers = ['Shares Outstanding', 'Float', 'Beta', 'Dividend Rate', 'Dividend Yield', 'ex-Dividend Date', 'Revenue', 'Gross Profit', 'EBITDA', 'ROE', 'ROA', 'ROC', 'Cash', 'Debt', 'Revenue/Share',
 'Revenue/Employee', 'P/E Ratio High', 'P/E Ratio Low', 'Profit Margin', 'Price to Sales', 'Price To Book', '200 Day Moving Avg', '50 Day Moving Avg', 'Institutional %', 'Insider %', 'Short Ratio' ]
@@ -43,15 +44,15 @@ const mapRows = (keyStats) => {
 const KeyStats = ({ keyStats }) => {
   return (
     <div className="key-stats" style={{display: "inline-block"}}>
-      <h3>{keyStats.companyName} Key Stats</h3>
-      <table>
+      <h2>{keyStats.companyName} Key Stats</h2>
+      <Table celled inverted selectable textAlign="center">
         <tbody>
           <tr>
             {mapHeaders()}
           </tr>
           {mapRows(keyStats)}
         </tbody>
-      </table>
+      </Table>
     </div>
   )
 }

@@ -53,9 +53,9 @@ const getDataObj = (watchlist) => {
 
 const WatchlistChart = ({ watchlist, sectorInfo }) => {
   return (
-    <React.Fragment>
+    <div className="stock-chart">
       <Pie data={getDataObj(watchlist, sectorInfo)} />
-    </React.Fragment>
+    </div>
   )
 }
 export default WatchlistChart

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Line } from 'react-chartjs-2'
+import { Button } from 'semantic-ui-react'
 
 // average: 168.609
 // changeOverTime: 0
@@ -47,8 +48,8 @@ const getDataObj = (chartData) => {
           lineTension: 0.2,
           pointRadius: 0,
           pointHitRadius: 10,
-          backgroundColor: 'rgb(255, 99, 132)',
-          borderColor: 'rgb(255, 99, 132)',
+          backgroundColor: '#61ffff',
+          borderColor: '#61ffff',
           data: mapData(chartData),
         }]
       }
@@ -57,14 +58,14 @@ const getDataObj = (chartData) => {
 
 const StockChart = ( { chartData, changeChartTimeframe }) => {
   return (
-    <React.Fragment>
+    <div className="stock-chart">
       <Line data={getDataObj(chartData)} />
-      <button onClick={changeChartTimeframe} value="1d">Day</button>
-      <button onClick={changeChartTimeframe} value="1m">Month</button>
-      <button onClick={changeChartTimeframe} value="ytd">YTD</button>
-      <button onClick={changeChartTimeframe} value="2y">2 Year</button>
-      <button onClick={changeChartTimeframe} value="5y">5 Year</button>
-    </React.Fragment>
+      <Button inverted color="teal" onClick={changeChartTimeframe} value="1d">Day</Button>
+      <Button inverted color="teal" onClick={changeChartTimeframe} value="1m">Month</Button>
+      <Button inverted color="teal" onClick={changeChartTimeframe} value="ytd">YTD</Button>
+      <Button inverted color="teal" onClick={changeChartTimeframe} value="2y">2 Year</Button>
+      <Button inverted color="teal" onClick={changeChartTimeframe} value="5y">5 Year</Button>
+    </div>
   )
 }
 export default StockChart

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Table } from 'semantic-ui-react'
 import EarningsChart from '../components/EarningsChart'
 
 
@@ -13,9 +14,13 @@ const renderEarnings = (earnings) => {
 
 const EarningsContainer = ({ earnings }) => {
   return (
-    <div className="container" >
-      <h3>Recent Earnings</h3>
-      {renderEarnings(earnings)}
+    <div className="earnings-container" >
+      <h2>Recent Earnings</h2>
+      <Table celled inverted selectable textAlign="center">
+        <tbody>
+          {renderEarnings(earnings)}
+        </tbody>
+      </Table>
     </div>
   )
 } /// End of Dashboard Class

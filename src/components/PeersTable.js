@@ -35,20 +35,18 @@ const mapRows = (peers) => {
 
 const PeersTable = ({ peers }) => {
   return (
-    <React.Fragment>
+    <div className="peers-table">
       <h2>PEERS</h2>
-      <div className="peers-table">
-        <Table celled inverted selectable>
-          <tbody>
-            <tr>
-              {mapHeaders()}
-            </tr>
+      <Table celled inverted selectable textAlign="center">
+        <tbody>
+          <tr>
+            {mapHeaders()}
+          </tr>
 
-            {mapRows(peers)}
-          </tbody>
-        </Table>
-      </div>
-    </React.Fragment>
+          {mapRows(peers)}
+        </tbody>
+      </Table>
+    </div>
   )
 }
 export default PeersTable
