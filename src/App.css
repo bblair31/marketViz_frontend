@@ -46,7 +46,14 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: lightblue;
+  background-color: lightgrey;
   z-index: 1;
   color: white;
+}
+
+.peers-table {
+  width: 100%;
+  margin: auto;
+  text-align: center;
+  overflow-x: scroll;
 }

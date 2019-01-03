@@ -5,12 +5,19 @@ import { Input } from 'semantic-ui-react'
 class SearchBar extends Component {
   state = {
     query: "",
-    suggestions: []
+    suggestions: [],
+    clicked: false
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.query.length > this.state.query.length) {
+      this.setState({clicked: false})
+    }
   }
 
   renderSuggestions = () => {
-    if (this.state.query.length >= 2) {
-      return(
+    if (this.state.query.length >= 2 && !this.state.clicked) {
+      return (
         <div className="search-suggestions">
           <div className="popup-text">
             {this.props.stockDictionary.map(stockObj => {
@@ -35,7 +42,9 @@ class SearchBar extends Component {
   }
 
   handleClick = event => {
-    this.setState({ query: event.target.innerText})
+    this.setState({query: event.target.innerText},
+      this.setState({clicked: true})
+    )
   }
 
   handleSearchSubmit = event => {
@@ -54,8 +63,9 @@ class SearchBar extends Component {
             <Input
               icon="search"
               value={this.state.query}
-              placeholder="Search by Ticker or Company Name"
+              placeholder="Search by Ticker or Name"
               onChange={this.handleSearchChange}
+              inverted
               >
             </Input>
           </form>

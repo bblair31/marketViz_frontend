@@ -29,7 +29,7 @@ const renderIpoCards = (iposInfo) => {
 
 const EventsContainer = ({ earningsToday, iposToday  }) => {
   return (
-    <div className="events-container" style={{border: '5px solid green'}}>
+    <div className="container">
       <h3>TODAY'S EARNINGS</h3>
       <h4>Before Open</h4>
       {renderEventCards(earningsToday.bto)}

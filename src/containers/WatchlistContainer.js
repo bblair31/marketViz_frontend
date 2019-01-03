@@ -15,9 +15,9 @@ class WatchlistContainer extends Component {
   }
 
   componentDidMount() {
-    this.setPeers()
+    // this.setPeers()
     this.setNews()
-    this.peersTimer = setInterval(() => this.setPeers(), 1000)
+    // this.peersTimer = setInterval(() => this.setPeers(), 1000)
     this.newsTimer = setInterval(() => this.setNews(), 5000)
   }
 
@@ -26,11 +26,11 @@ class WatchlistContainer extends Component {
     clearInterval(this.newsTimer)
   }
 
-  setPeers() {
-    Adapter.getWatchlistPeers()
-    .then(data => this.setState({peers: data}))
-    .catch(e => console.log(e))
-  }
+  // setPeers() {
+  //   Adapter.getWatchlistPeers()
+  //   .then(data => this.setState({peers: data}))
+  //   .catch(e => console.log(e))
+  // }
 
   setNews() {
     Adapter.getWatchlistNews()
@@ -51,7 +51,7 @@ class WatchlistContainer extends Component {
           handleStarClick={this.props.handleStarClick}
         />
         <NewsContainer news={this.state.news} />
-        <PeersTable peers={this.state.peers} />
+        {/* <PeersTable peers={this.state.peers} /> */}
       </div>
     )
   }

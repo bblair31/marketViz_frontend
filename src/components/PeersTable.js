@@ -1,6 +1,7 @@
-import React from 'react';
+import React from 'react'
+import { Table } from 'semantic-ui-react'
 
-const headers = ['Symbol', 'Name', 'Sector', 'Market Cap', 'Avg Volume', 'Latest Volume', 'Change', '% Change', 'Price', 'P/E Ratio', 'Previous Close', '52 Week Low', '52 Week High', 'YTD Change' ]
+const headers = ['Symbol', 'Name', 'Market Cap', 'Avg Volume', 'Latest Volume', 'Change', '% Change', 'Price', 'P/E Ratio', 'Previous Close', '52 Week Low', '52 Week High', 'YTD Change' ]
 
 const mapHeaders = () => {
   return headers.map((header, i) => <th key={i}>{header}</th>)
@@ -13,7 +14,6 @@ const mapRows = (peers) => {
         <tr key={i}>
           <td>{peer.symbol}</td>
           <td>{peer.companyName}</td>
-          <td>{peer.sector}</td>
           <td>{peer.marketCap}</td>
           <td>{peer.avgTotalVolume}</td>
           <td>{peer.latestVolume}</td>
@@ -35,18 +35,20 @@ const mapRows = (peers) => {
 
 const PeersTable = ({ peers }) => {
   return (
-    <div className="peers-table" style={{display: "inline-block"}}>
-      <h3>PEERS</h3>
-      <table>
-        <tbody>
-          <tr>
-            {mapHeaders()}
-          </tr>
+    <React.Fragment>
+      <h2>PEERS</h2>
+      <div className="peers-table">
+        <Table celled inverted selectable>
+          <tbody>
+            <tr>
+              {mapHeaders()}
+            </tr>
 
-          {mapRows(peers)}
-        </tbody>
-      </table>
-    </div>
+            {mapRows(peers)}
+          </tbody>
+        </Table>
+      </div>
+    </React.Fragment>
   )
 }
 export default PeersTable
