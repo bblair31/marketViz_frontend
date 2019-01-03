@@ -7,7 +7,7 @@ const renderMarketCards = (marketInfo) => {
   if (!!marketInfo) {
     return marketInfo.map(market => {
       return (
-        <Segment inverted color="black" key={market.quote.symbol}>
+        <Segment inverted color={(market.quote.changePercent >= 0 ? "green" : "red")} key={market.quote.symbol}>
           <MarketCard key={market.quote.symbol} market={market.quote} />
         </Segment>
       )

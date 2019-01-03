@@ -3,7 +3,7 @@ import Watchlist from '../components/Watchlist'
 import MarketContainer from './MarketContainer'
 import NewsContainer from './NewsContainer'
 import Adapter from '../apis/Adapter'
-import PeersTable from '../components/PeersTable'
+// import PeersTable from '../components/PeersTable'
 import WatchlistChart from '../components/WatchlistChart'
 
 class WatchlistContainer extends Component {

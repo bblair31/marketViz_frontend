@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import { Card } from 'semantic-ui-react'
 import Adapter from '../apis/Adapter'
 import CryptoCard from '../components/CryptoCard'
 
@@ -24,15 +25,21 @@ class Crypto extends Component {
   }
 
   mapCrypto = () => {
-    return this.state.cryptos.map(crypto =>
-      <CryptoCard key={crypto.symbol} crypto={crypto} />
-    )
+    return this.state.cryptos.map(crypto => {
+      return (
+        <Card key={crypto.symbol} style={{background: "black"}}>
+          <CryptoCard key={crypto.symbol} crypto={crypto} />
+        </Card>
+      )
+    })
   }
 
   render() {
     return (
-      <div className="crypto">
-        {this.mapCrypto()}
+      <div className="container">
+        <Card.Group itemsPerRow={4} centered textAlign="center">
+          {this.mapCrypto()}
+        </Card.Group>
       </div>
     )
   }

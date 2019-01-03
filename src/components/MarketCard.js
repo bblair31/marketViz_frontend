@@ -16,7 +16,7 @@ const checkMarketName = symbol => {
 const MarketCard = ({ market }) => {
   return (
     <div className="market-card">
-      <h4 style={{color: (market.changePercent >= 0 ? "green" : "red")}}>
+      <h4>
         {checkMarketName(market.symbol)}<br></br>
         {(market.changePercent * 100).toFixed(2)}%
       </h4>

@@ -51,7 +51,7 @@ class SectorCard extends Component {
     return (
       <div className="sector-card">
         <Icon circular inverted color='teal' size="huge" name={this.iconDictionary(this.props.sector.name)} />
-        <h4>{this.props.sector.name}</h4>
+        <h3>{this.props.sector.name}</h3>
         <h3 style={{color: (this.props.sector.performance >= 0 ? "green" : "red"), backgroundColor: this.checkStatus()}}>
           {(this.props.sector.performance * 100).toFixed(2)}%
         </h3>

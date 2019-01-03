@@ -17,12 +17,11 @@ class CryptoCard extends Component {
 
   render() {
     return (
-      <div className="crypto-card">
-        <b>{this.props.crypto.companyName}</b>
-        <p>Symbol: {this.props.crypto.symbol}</p>
+      <div className="crypto-card" style={{backgroundColor: this.checkStatus()}}>
+        <h4>{this.props.crypto.companyName}</h4>
         <p>Latest Price: {this.props.crypto.latestPrice}</p>
         <p>Change: {this.props.crypto.change}</p>
-        <p style={{color: (this.props.crypto.changePercent >= 0 ? "green" : "red"), backgroundColor: this.checkStatus()}}>{(this.props.crypto.changePercent * 100).toFixed(2)}%</p>
+        <p style={{color: (this.props.crypto.changePercent >= 0 ? "green" : "red")}}>{(this.props.crypto.changePercent * 100).toFixed(2)}%</p>
         <p>Updated: {this.props.crypto.latestTime}</p>
       </div>
     )

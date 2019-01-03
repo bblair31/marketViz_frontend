@@ -32,6 +32,10 @@
   margin: 10px;
 }
 
+.event-card {
+  margin: 10px;
+}
+
 .search-suggestions {
   position: relative;
   z-index: 1;
@@ -56,4 +60,8 @@
   margin: auto;
   text-align: center;
   overflow-x: scroll;
+}
+
+body {
+  background-color: black;
 }
