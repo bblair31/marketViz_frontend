@@ -6,9 +6,9 @@ const NewsCard = ({ news }) => {
   return (
     <Grid.Row columns={2}>
       <Grid.Column width={6}>
-        <b><a href={news.url} target="_blank" rel="noopener noreferrer">{news.headline}</a></b>
+        <h3><a href={news.url} target="_blank" rel="noopener noreferrer">{news.headline}</a></h3>
         <p>
-          <Moment format="DD/MM/YYYY HH:mm">
+          <Moment format="MM/DD/YYYY HH:mm">
             {news.datetime}
           </Moment>
         </p>

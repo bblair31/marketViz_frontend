@@ -20,11 +20,15 @@
 }
 
 .news-container {
-  height: 500px;
+  height: 600px;
   overflow: scroll;
 }
 
 .sector-card {
+  margin: 10px;
+}
+
+.stock-card {
   margin: 10px;
 }
 
