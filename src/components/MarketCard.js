@@ -16,10 +16,10 @@ const checkMarketName = symbol => {
 const MarketCard = ({ market }) => {
   return (
     <div className="market-card">
-      <h4>
+      <p>
         {checkMarketName(market.symbol)}<br></br>
         {(market.changePercent * 100).toFixed(2)}%
-      </h4>
+      </p>
     </div>
   )
 } /// End of Dashboard Class

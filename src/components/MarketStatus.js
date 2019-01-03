@@ -4,7 +4,7 @@ const MarketStatus = () => {
   let datetime = new Date()
   let day = datetime.getDay()
   let hour = datetime.getHours()
-  let minute = datetime.getMinutes()
+  // let minute = datetime.getMinutes()
 
   if (day < 1 || day > 5) {
     return <div className="market-status">Markets are currently CLOSED  </div>

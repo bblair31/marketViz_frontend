@@ -17,10 +17,34 @@ const mapWatchlist = (watchlist, handleStarClick) => {
   })
 }
 
+const getDailyPerformance = watchlist => {
+  let count = 0
+  let performance = 0
+
+  watchlist.forEach(stock => {
+    performance += stock.changePercent
+    count += 1
+  })
+  return ((performance/count)*100).toFixed(2)
+}
+
+const getYtdPerformance = watchlist => {
+  let count = 0
+  let performance = 0
+
+  watchlist.forEach(stock => {
+    performance += stock.ytdChange
+    count += 1
+  })
+  return ((performance/count)*100).toFixed(2)
+}
+
 
 const Watchlist = ({ watchlist, handleStarClick }) => {
   return (
     <div className="container">
+      <h2>Daily Performance: {getDailyPerformance(watchlist)}%</h2>
+      <h2>YTD Performance: {getYtdPerformance(watchlist)}%</h2>
       <Card.Group itemsPerRow={4}>
         {mapWatchlist(watchlist, handleStarClick)}
       </Card.Group>

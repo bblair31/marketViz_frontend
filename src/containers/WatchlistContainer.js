@@ -42,13 +42,13 @@ class WatchlistContainer extends Component {
     return (
       <div className="watchlist">
         <MarketContainer marketInfo={this.props.marketInfo} />
-        <WatchlistChart
-          watchlist={this.props.watchlist}
-          sectorInfo={this.props.sectorInfo}
-        />
         <Watchlist
           watchlist={this.props.watchlist}
           handleStarClick={this.props.handleStarClick}
+        />
+        <WatchlistChart
+          watchlist={this.props.watchlist}
+          sectorInfo={this.props.sectorInfo}
         />
         <NewsContainer news={this.state.news} />
         {/* <PeersTable peers={this.state.peers} /> */}

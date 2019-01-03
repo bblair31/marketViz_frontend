@@ -8,7 +8,7 @@ const WelcomeContainer = ({ successfulLogin }) => {
     <div className="welcome-container">
       <Header as='h1' textAlign='center' inverted color='blue'>
         <img src='https://tbncdn.freelogodesign.org/c86624f6-33f7-4d24-a887-26689680d596.png' alt='' />
-        WELCOME TO MARKETVIZ
+        WELCOME TO MARKET-VIZ
       </Header>
       <Segment placeholder>
         <Grid columns={2} relaxed='very' stackable>

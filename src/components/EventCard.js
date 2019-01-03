@@ -1,9 +1,10 @@
-import React from 'react';
+import React from 'react'
+import { NavLink } from 'react-router-dom'
 
 const EventCard = ({ eventObj }) => {
   return (
     <div className="event-card">
-      <h3><b>{eventObj.symbol}</b></h3>
+      <h3><b><NavLink to={`/stocks/${eventObj.symbol}`}>{eventObj.symbol}</NavLink></b></h3>
       <p>{eventObj.quote.companyName}</p>
       <h3 style={eventObj.quote.change >= 0 ? {color: "#52e04a"} : {color: "red"}}>{eventObj.quote.change}</h3>
       <h3 style={eventObj.quote.change >= 0 ? {color: "#52e04a"} : {color: "red"}}>{(eventObj.quote.changePercent * 100).toFixed(2)}%</h3>
