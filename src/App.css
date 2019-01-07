@@ -1,32 +1,100 @@
-.App {
+.app-container {
+  margin: auto;
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+.container {
+  margin: 25px auto 25px auto;
+  width: 80%;
+  background-color: #424549;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.market-container {
+  margin: auto;
+  width: 60%;
+}
+
+.welcome-container {
+  margin: auto;
+  width: 80%;
+}
+
+
+
+.stock {
+  margin: 25px auto 25px auto;
+  width: 80%;
+}
+
+.news-container {
+  height: 600px;
+  overflow: scroll;
+}
+
+.sector-card {
+  margin: 10px;
+}
+
+.market-card, .market-status {
+  margin: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  vertical-align: middle;
+}
+
+.stock-card {
+  margin: 10px;
+  font-size: 20px;
+}
+
+.event-card {
+  margin: 10px;
+  font-size: 18px;
+}
+
+.search-suggestions {
+  position: relative;
+  z-index: 1;
+}
+
+.popup-text {
+  height: 100px;
+  overflow: scroll;
+  position: absolute;
+  opacity: 10;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: lightgrey;
+  z-index: 1;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.peers-table, .key-stats, .balance-sheet, .earnings-container {
+  width: 100%;
+  margin: 10px;
+  text-align: center;
+  overflow-x: scroll;
+  background-color: #424549;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.stock-chart {
+  margin: 75px;
+}
+
+.market-status {
+  font-size: 20px;
+}
+
+.stats-card, .profile-card {
+  margin: 5px;
+}
+
+body {
+  background-color: black;
+}
+
+a {
+  color: #0fa3ff;
 }

@@ -29,14 +29,22 @@ const getDataObj = (watchlist) => {
     	datasets: [{
     		data: mapChartData(watchlist),
     		backgroundColor: [
-    		'#FF6384',
-    		'#36A2EB',
-    		'#FFCE56'
+    		'#3eb28d',
+        '#dabafc',
+        '#054791',
+        '#FF6384',
+        '#520487',
+        '#9fe6f9',
+        '#eabf88'
     		],
     		hoverBackgroundColor: [
-    		'#FF6384',
-    		'#36A2EB',
-    		'#FFCE56'
+    		'#3eb28d',
+    		'#dabafc',
+        '#054791',
+        '#FF6384',
+        '#520487',
+        '#9fe6f9',
+        '#eabf88'
     		]
     	}]
     }
@@ -45,9 +53,9 @@ const getDataObj = (watchlist) => {
 
 const WatchlistChart = ({ watchlist, sectorInfo }) => {
   return (
-    <React.Fragment>
+    <div className="stock-chart">
       <Pie data={getDataObj(watchlist, sectorInfo)} />
-    </React.Fragment>
+    </div>
   )
 }
 export default WatchlistChart

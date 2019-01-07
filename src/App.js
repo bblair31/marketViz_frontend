@@ -5,11 +5,11 @@ import { Route, withRouter, Switch, Redirect } from 'react-router-dom'
 import Dashboard from './containers/Dashboard'
 import Stock from './containers/Stock'
 import WelcomeContainer from './containers/WelcomeContainer'
-import SearchBar from './components/SearchBar'
 import NotFound from './components/NotFound'
 import WatchlistContainer from './containers/WatchlistContainer'
 import Crypto from './containers/Crypto'
 import Nav from './components/Nav'
+import { Segment } from 'semantic-ui-react'
 
 class App extends Component {
   state = {
@@ -18,6 +18,7 @@ class App extends Component {
     stockDictionary: [],
     query: "",
     watchlist: [],
+    watchlistSymbols: [],
     user: null,
   }
 
@@ -43,7 +44,8 @@ class App extends Component {
 
   setMarketInfo() {
     Adapter.getMarkets()
-      .then(data => this.setState({ marketInfo: data }))
+      .then(data => Object.values(data))
+      .then(array => this.setState({ marketInfo: array }))
       .catch(e => console.log(e))
   }
 
@@ -111,14 +113,14 @@ class App extends Component {
     this.setState(prevState => prevState.watchlist.filter(stock => stock.symbol !== symbol))
   }
 
-
   render() {
     return (
-      <div className="App">
-        <Nav user={this.state.user} />
-        <button onClick={this.handleLogout}>Logout</button>
-        <SearchBar stockDictionary={this.state.stockDictionary} />
-
+      <Segment className="app-container" inverted>
+        <Nav
+          user={this.state.user}
+          handleLogout={this.handleLogout}
+          stockDictionary={this.state.stockDictionary}
+        />
 
         <Switch>
           <Route exact path="/" render={() => <Redirect to="/dashboard" />} />
@@ -130,6 +132,7 @@ class App extends Component {
             marketInfo={this.state.marketInfo}
             sectorInfo={this.state.sectorInfo}
             handleStarClick={this.handleStarClick}
+            watchlist={this.state.watchlist}
             />}
           />
           <Route path="/watchlist" render={() => <WatchlistContainer
@@ -145,13 +148,14 @@ class App extends Component {
             sectorInfo={this.state.sectorInfo}
             key={routerProps.match.params.symbol}
             handleStarClick={this.handleStarClick}
+            watchlist={this.state.watchlist}
            />}
           />
           <Route path="/crypto" render={() => <Crypto />}
           />
          <Route component={NotFound} />
         </Switch>
-      </div>
+      </Segment>
     )
   }
 }

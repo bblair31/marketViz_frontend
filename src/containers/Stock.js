@@ -23,7 +23,8 @@ class Stock extends Component {
     companyInfo: [],
     earnings: [],
     keyStats: [],
-    logo: null
+    logo: null,
+    active: false
   }
 
   componentDidMount() {
@@ -108,32 +109,52 @@ class Stock extends Component {
     this.setState({ chartTimeframe: event.target.value }, () => this.setChart())
   }
 
+  handleStarClick = (symbol, companyName, latestPrice) => {
+    this.setState(prevState => {
+      return {
+        active: !prevState.active
+      }
+    })
+    this.props.handleStarClick(symbol, companyName, latestPrice)
+  }
+
+  checkActive = () => {
+    if (!!this.props.watchlist.length > 0) {
+      return !!(this.props.watchlist.filter(stock => stock.symbol === this.state.symbol.toUpperCase()).length > 0)
+    } else {
+      return false
+    }
+  }
+
   render() {
     return (
-      <div className="stock">
+      <React.Fragment>
         <MarketContainer marketInfo={this.props.marketInfo}/>
+        <div className="stock">
 
-        {this.state.symbol} <img src={this.state.logo} alt="" />
+          <img src={this.state.logo} alt="" style={{borderRadius: '25px'}} />
 
-        <LiveStockDetails
-          stock={this.state.stock}
-          handleStarClick={this.props.handleStarClick}
-         />
+          <LiveStockDetails
+            stock={this.state.stock}
+            handleStarClick={this.handleStarClick}
+            active={this.checkActive()}
+           />
 
-        <StockChart
-          chartData={this.state.chart}
-          changeChartTimeframe={this.changeChartTimeframe}
-        />
-        <StockDetailsContainer
-          companyInfo={this.state.companyInfo}
-          stock={this.state.stock}
-        />
-        <KeyStats keyStats={this.state.keyStats}/>
-        <EarningsContainer earnings={this.state.earnings} />
-        <NewsContainer news={this.state.news}/>
-        <PeersTable peers={this.state.peers}/>
-        <BalanceSheet balanceSheet={this.state.balanceSheet}/>
-      </div>
+          <StockChart
+            chartData={this.state.chart}
+            changeChartTimeframe={this.changeChartTimeframe}
+          />
+          <StockDetailsContainer
+            companyInfo={this.state.companyInfo}
+            stock={this.state.stock}
+          />
+          <KeyStats keyStats={this.state.keyStats}/>
+          <EarningsContainer earnings={this.state.earnings} />
+          <NewsContainer news={this.state.news}/>
+          <PeersTable peers={this.state.peers}/>
+          <BalanceSheet balanceSheet={this.state.balanceSheet}/>
+        </div>
+      </React.Fragment>
     )
   }
 } /// End of Stock Class

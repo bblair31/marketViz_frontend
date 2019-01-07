@@ -1,4 +1,5 @@
-import React from 'react';
+import React from 'react'
+import { Table } from 'semantic-ui-react'
 
 const headers = ['Date', 'Net Income', 'Gross Profit', 'Operating Revenue', 'Operating Expenses', 'Operating Income', 'Assets', 'Cash', 'Debt', 'Liabilities', 'Revenue', 'Current Cash', 'Cash Change', 'Cash Flow', 'Cost of Revenue', 'R&D', 'Shareholder Equity'  ]
 
@@ -40,15 +41,15 @@ const mapRows = (financials) => {
 const BalanceSheet = ({ balanceSheet }) => {
   return (
     <div className="balance-sheet" style={{display: "inline-block"}}>
-      <h3>{balanceSheet.symbol} Balance Sheet</h3>
-      <table>
+      <h2>{balanceSheet.symbol} Balance Sheet</h2>
+      <Table celled inverted selectable textAlign="center">
         <tbody>
           <tr>
             {mapHeaders()}
           </tr>
           {mapRows(balanceSheet.financials)}
         </tbody>
-      </table>
+      </Table>
     </div>
   )
 }

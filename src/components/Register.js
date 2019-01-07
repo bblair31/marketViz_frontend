@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Adapter from '../apis/Adapter'
+import { Button, Form } from 'semantic-ui-react'
 
 class Register extends Component {
   state = {
@@ -26,35 +27,43 @@ class Register extends Component {
 
   render() {
     return (
-      <div className="register" style={{display: "inline-block"}}>
-        REGISTER
-        <form className="register-form" onSubmit={this.handleSubmit} >
-          <label>Email: </label>
-          <input
+
+        <Form className="register-form" onSubmit={this.handleSubmit} >
+
+          <Form.Input
             type="email"
             name="email"
+            label="Email"
+            placeholder="123@gmail.com"
+            icon='mail' 
+            iconPosition='left'
             value={this.state.email}
             onChange={this.handleChange}
           />
 
-          <label>Username: </label>
-          <input
+
+          <Form.Input
             type="text"
             name="username"
+            label="Username"
+            placeholder="Username"
+            icon='user'
+            iconPosition='left'
             value={this.state.username}
             onChange={this.handleChange}
           />
 
-          <label>Password: </label>
-          <input
+          <Form.Input
             type="password"
             name="password"
+            label="Password"
+            icon='lock'
+            iconPosition='left'
             value={this.state.password}
             onChange={this.handleChange} />
 
-          <button type="submit" value="submit">Sign Up</button>
-        </form>
-      </div>
+          <Button content='Sign up' icon='signup' type="submit" value="submit" />
+        </Form>
     )
   }
 } /// End of Register Class

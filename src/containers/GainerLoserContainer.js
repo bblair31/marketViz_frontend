@@ -1,14 +1,20 @@
-import React from 'react';
+import React from 'react'
+import { Divider, Grid, Card, Segment } from 'semantic-ui-react'
+
 import StockCard from '../components/StockCard'
 
 const renderGLList = (stocks, handleStarClick) => {
-  if (stocks) {
+  if (!!stocks) {
     return stocks.map(stock => {
-      return <StockCard
-        key={stock.symbol}
-        stock={stock}
-        handleStarClick={handleStarClick}
-      />
+      return (
+        <Card key={stock.symbol} style={stock.change >= 0 ? {background: "#cbffc9"} : {background: "#ffced3"}}>
+          <StockCard
+            key={stock.symbol}
+            stock={stock}
+            handleStarClick={handleStarClick}
+          />
+        </Card>
+      )
     })
   }
 }
@@ -16,10 +22,29 @@ const renderGLList = (stocks, handleStarClick) => {
 
 const GainerLoserContainer = ({ gainers, losers, handleStarClick }) => {
   return (
-    <div className="gainer-loser-container" style={{border: '5px solid gray'}}>
-      <h3>GAINERS/LOSERS FOR THE DAY</h3>
-      <div className="gainers" style={{border: '5px solid green'}}>GAINERS: {renderGLList(gainers, handleStarClick)}</div>
-      <div className="losers" style={{border: '5px solid red'}}>LOSERS: {renderGLList(losers, handleStarClick)}</div>
+    <div className="container">
+      <h2>TODAY'S MOVERS</h2>
+      <Segment placeholder style={{backgroundColor: "#424549"}}>
+        <Grid columns={2}>
+          <Grid.Column>
+              <div className="gainers">
+                <h2 style={{backgroundColor: "grey", color: "white"}}>Gainers:</h2>
+                <Card.Group itemsPerRow={3}>
+                {renderGLList(gainers, handleStarClick)}
+                </Card.Group>
+            </div>
+          </Grid.Column>
+          <Divider vertical></Divider>
+          <Grid.Column>
+          <div className="losers">
+            <h2 style={{backgroundColor: "grey", color: "white"}}>Losers:</h2>
+            <Card.Group itemsPerRow={3}>
+               {renderGLList(losers, handleStarClick)}
+             </Card.Group>
+           </div>
+          </Grid.Column>
+        </Grid>
+      </Segment>
     </div>
   )
 } /// End of GainerLoserContainer
