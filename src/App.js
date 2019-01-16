@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import './App.css';
+import React, { Component } from 'react'
+import './App.css'
 import Adapter from './apis/Adapter'
 import { Route, withRouter, Switch, Redirect } from 'react-router-dom'
 import Dashboard from './containers/Dashboard'
