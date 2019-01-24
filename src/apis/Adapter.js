@@ -1,4 +1,4 @@
-const BASE_URL = "https://market-viz-backend.herokuapp.com/";
+const BASE_URL = "https://market-viz-backend.herokuapp.com/api/v1";
 
 
 export default class Adapter {
