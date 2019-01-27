@@ -100,12 +100,9 @@ class App extends Component {
       Adapter.addTransaction(foundStock, latestPrice)
         .then(res => this.setState({ watchlist: res }))
     } else {
+      this.removeFromWatchlist(symbol)
       Adapter.destroyTransaction(symbol)
-        .then(res => {
-          if (res.ok) {
-            this.removeFromWatchlist(symbol)
-          }
-        })
+      // Add in pessimistic rendering or handle if !response.ok
     }
   }
 

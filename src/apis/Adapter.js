@@ -1,8 +1,6 @@
-const BASE_URL = "https://market-viz-backend.herokuapp.com/api/v1";
-
+const BASE_URL = "http://localhost:3000/api/v1";
 
 export default class Adapter {
-
   static newUser(userData) {
     return fetch(`${BASE_URL}/users`, {
       method: "POST",
@@ -41,7 +39,6 @@ export default class Adapter {
       iex_id: parseInt(foundStock.iexId),
       price_bought: latestPrice,
     }
-
     return fetch(`${BASE_URL}/transactions`, {
       method: "POST",
       headers: {

@@ -42,9 +42,10 @@ class SearchBar extends Component {
   }
 
   handleClick = event => {
-    this.setState({query: event.target.innerText},
-      this.setState({clicked: true})
-    )
+    this.setState({
+      query: event.target.innerText,
+      clicked: true
+    })
   }
 
   handleSearchSubmit = event => {
