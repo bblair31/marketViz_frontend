@@ -45,11 +45,14 @@ class SearchBar extends Component {
     this.setState({
       query: event.target.innerText,
       clicked: true
-    })
+    }, () => this.handleSearchSubmit(event))
   }
 
   handleSearchSubmit = event => {
-    event.preventDefault()
+    event.persist()
+    if (event.type === "submit") {
+      event.preventDefault()
+    }
     let stateCopy = Object.assign({}, this.state)
     this.setState({ query: "", suggestions: [] })
     this.props.history.push(`/stocks/${stateCopy.query.split(" ")[0]}`)
