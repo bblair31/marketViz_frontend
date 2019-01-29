@@ -51,14 +51,11 @@ React should automatically open the application in your default browser and begi
 
 * [React.js](https://reactjs.org/docs/getting-started.html) - The Javascript framework used
 * [Semantic UI](https://semantic-ui.com/) - Integration for user interface and styling components
+* [Semantic UI React](https://react.semantic-ui.com/) - React integration/wrapper for Semantic UI
 * [Create React App](https://github.com/facebook/create-react-app) - Bootstrap base application
-* [Twilio API](https://www.twilio.com/docs/sms) - External API for sending SMS messages on behalf of users
-* [data-fns](https://date-fns.org/docs/Getting-Started) - Modern JavaScript date utility library
-
-## Contributors
-
-* [Shelby Scalia](https://github.com/srscalia)
-
+* [React Chart.js 2](https://github.com/jerairrest/react-chartjs-2) - Wrapper to use Chart.js with React
+* [Moment.js](https://momentjs.com/docs/) - Parse, validate, manipulate, and display dates and times in JavaScript
+* [IEX API](https://iextrading.com/developer/docs/) - API for gathering real-time stock information
 
 ## License
 
@@ -66,5 +63,6 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* https://blog.flowandform.agency/create-a-custom-calendar-in-react-3df1bfd0b728
+* Data provided for free by [IEX](https://iextrading.com/developer/). View IEX’s [Terms of Use](https://iextrading.com/api-exhibit-a/).
+
 
