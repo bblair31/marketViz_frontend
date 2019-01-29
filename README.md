@@ -1,44 +1,63 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+# MarketViz 📊📈
 
-In the project directory, you can run:
+Financial research application to visualize near real-time stock market and cryptocurrency data
 
-### `npm start`
+[Working Demo](https://market-viz.herokuapp.com)
+[Demo Video](https://www.dropbox.com/s/tjf8mflvrdpd7qj/MarketViz%20Demo%20Video.mov?dl=0)
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
 
-### `npm test`
+## Getting Started
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-### `npm run build`
+### Prerequisites
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**You will need to fork and locally clone the Ruby on Rails backend from this repository:** [BirthdayReminder Backend](https://github.com/bblair31/birthday_reminder_backend)
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+After following the README in the Backend Repo above, make sure to run `rails s` first so that Rails is running on localhost:3000
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+### Installing
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+1. Fork and clone this repository
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+2. Install all required packages from Node Package Manager
+ 
+```
+npm install
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+3. Start up the development server 
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```
+npm start
+```
 
-## Learn More
+4. React should alert you to the fact that the Rails server is already running on default port localhost:3000. It will ask if you want to use a different port. Respond with `Y`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+React should automatically open the application in your default browser and begin to load. If it does not, you will see the Local web address in terminal at which you can access the application via you browser
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+
+## Built With
+
+* [React.js](https://reactjs.org/docs/getting-started.html) - The Javascript framework used
+* [Semantic UI](https://semantic-ui.com/) - Integration for user interface and styling components
+* [Create React App](https://github.com/facebook/create-react-app) - Bootstrap base application
+* [Twilio API](https://www.twilio.com/docs/sms) - External API for sending SMS messages on behalf of users
+* [data-fns](https://date-fns.org/docs/Getting-Started) - Modern JavaScript date utility library
+
+## Contributors
+
+* [Shelby Scalia](https://github.com/srscalia)
+
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+## Acknowledgments
+
+* https://blog.flowandform.agency/create-a-custom-calendar-in-react-3df1bfd0b728
+
