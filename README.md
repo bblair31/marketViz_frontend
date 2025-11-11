@@ -1,68 +1,182 @@
-
 # MarketViz 📊📈
 
-Financial research application to visualize real-time stock market and cryptocurrency data. Users can do in-depth research on all stocks listed on US Stock Exchanges and on cryptocurrencies. They can create portfolios and visualize diversification as well as basic performance metrics.
+> **Portfolio-Ready Financial Dashboard** - Real-time stock market data visualization with modern React architecture
 
-* [Working Demo](https://market-viz.herokuapp.com)
+A comprehensive financial research application featuring real-time stock quotes, interactive charts, portfolio tracking, and AI-powered market sentiment analysis.
 
-* [Demo Video](https://www.dropbox.com/s/tjf8mflvrdpd7qj/MarketViz%20Demo%20Video.mov?dl=0)
+[![React](https://img.shields.io/badge/React-18.3-blue.svg)](https://reactjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.6-blue.svg)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite-5.4-purple.svg)](https://vitejs.dev/)
 
+---
 
-## Getting Started
+## ✨ Key Features
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+- **Real-Time Stock Data** - Live quotes with automatic caching and smart refetching
+- **Interactive Charts** - Historical price data visualization with Chart.js v4
+- **Watchlist Management** - Track favorite stocks with optimistic UI updates
+- **Market News** - AI-powered sentiment analysis on latest financial news
+- **Modern UI/UX** - Glassmorphism design, skeleton loaders, responsive layout
+- **Type Safety** - Full TypeScript coverage across the codebase
+- **Lightning Fast** - Vite build system, code splitting, and performance optimized
+
+---
+
+## 🚀 Quick Start
 
 ### Prerequisites
+- Node.js 18+
+- Backend API running at `http://localhost:3000` ([Backend Repo](https://github.com/bblair31/marketViz_backend))
 
-**You will need to fork and locally clone the Ruby on Rails backend from this repository:** [MarketViz Backend](https://github.com/bblair31/marketViz_backend)
+### Installation
 
-After following the README in the Backend Repo above, make sure to run `rails s` first so that Rails is running on localhost:3000
+```bash
+# Clone the repository
+git clone https://github.com/bblair31/marketViz_frontend.git
+cd marketViz_frontend
 
-
-### Installing
-
-1. Fork and clone this repository
-
-2. Install all required packages from Node Package Manager
- 
-```
+# Install dependencies
 npm install
+
+# Set up environment variables
+cp .env.example .env
+# Edit .env and set: VITE_API_BASE_URL=http://localhost:3000/api/v1
+
+# Start development server
+npm run dev
 ```
 
-3. Change the `BASE_URL` in /marketviz-frontend/src/apis/Adapter.js from `const BASE_URL = "https://market-viz-backend.herokuapp.com/api/v1/"` to:
+The app will open at `http://localhost:3001`
+
+---
+
+## 🏗️ Technology Stack
+
+### Core Technologies
+- **React 18** with hooks and concurrent features
+- **TypeScript** for full type safety
+- **Vite** - Modern build tool (10x faster than CRA)
+- **React Router v6** - Client-side routing
+
+### State Management
+- **TanStack Query v5** - Smart server state management
+  - Automatic caching and background refetching
+  - Optimistic updates for instant UI
+  - No more aggressive polling!
+- **Context API** - Authentication and global state
+
+### UI & Visualization
+- **Chart.js v4** with React wrapper
+- **Semantic UI React** for component library
+- **date-fns** - Modern date handling
+
+### Development
+- **Vitest** - Unit testing framework
+- **React Testing Library** - Component testing
+
+---
+
+## 📂 Project Structure
 
 ```
-localhost:3000/api/v1
+src/
+├── api/               # API client, endpoints, types
+├── components/        # Reusable UI components
+│   ├── ui/           # Modern UI helpers (Skeleton, TrendIndicator, etc.)
+│   └── charts/       # Chart.js wrapper components
+├── containers/        # Page-level components (Dashboard, Stock, etc.)
+├── contexts/          # React Context providers (Auth)
+├── hooks/            # Custom React hooks (useStockData, useWatchlist)
+├── utils/            # Utilities (date/number formatting)
+├── App.tsx           # Root component with routing
+└── main.tsx          # Application entry point
 ```
 
+---
 
-4. Start up the development server 
+## 🎯 Modern Patterns
 
+### No More Aggressive Polling!
+
+**Before:**
+```javascript
+// Old way - polling every 1 second! 😱
+setInterval(() => fetchData(), 1000)
 ```
-npm start
+
+**After:**
+```typescript
+// Modern way - smart caching with TanStack Query 🚀
+const { data, isLoading } = useStockQuote(symbol)
 ```
 
-5. React should alert you to the fact that the Rails server is already running on default port `localhost:3000`. It will ask if you want to use a different port. Respond with `Y`
+### Type-Safe API Layer
 
-React should automatically open the application in your default browser and begin to load. If it does not, you will see the Local web address in terminal at which you can access the application via your browser.
+```typescript
+const { data: quote } = useStockQuote('AAPL')  // Fully typed!
+const { data: news } = useMarketNews('AAPL')   // Auto-complete support
+```
 
+---
 
-## Built With
+## 📜 Available Scripts
 
-* [React.js](https://reactjs.org/docs/getting-started.html) - The Javascript framework used
-* [Semantic UI](https://semantic-ui.com/) - Integration for user interface and styling components
-* [Semantic UI React](https://react.semantic-ui.com/) - React integration/wrapper for Semantic UI
-* [Create React App](https://github.com/facebook/create-react-app) - Bootstrap base application
-* [React Chart.js 2](https://github.com/jerairrest/react-chartjs-2) - Wrapper to use Chart.js with React
-* [Moment.js](https://momentjs.com/docs/) - Parse, validate, manipulate, and display dates and times in JavaScript
-* [IEX API](https://iextrading.com/developer/docs/) - API for gathering real-time stock information
+```bash
+npm run dev       # Start dev server
+npm run build     # Build for production
+npm run preview   # Preview production build
+npm run test      # Run tests
+npm run lint      # Lint code
+```
 
-## License
+---
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+## 🔐 Security Features
 
-## Acknowledgments
+- JWT token authentication with expiration checking
+- Protected routes with automatic redirect
+- Secure token storage and management
+- API request/response interceptors
+- Error boundaries for graceful error handling
 
-* Data provided for free by [IEX](https://iextrading.com/developer/). View IEX’s [Terms of Use](https://iextrading.com/api-exhibit-a/).
+---
+
+## 📊 Performance Optimizations
+
+- Code splitting with lazy-loaded routes
+- TanStack Query automatic caching
+- Request deduplication
+- Skeleton loading states
+- Vite HMR for instant updates
+
+---
+
+## 🗺️ Roadmap
+
+- [ ] Technical indicators (RSI, MACD, Bollinger Bands)
+- [ ] Stock comparison tool
+- [ ] Price alerts and notifications
+- [ ] Cryptocurrency support
+- [ ] Market heatmap visualization
+- [ ] Mobile app (React Native)
+
+---
+
+## 📝 License
+
+MIT License - see [LICENSE.md](LICENSE.md)
+
+---
+
+## 🙏 Acknowledgments
+
+- Market data by [Alpha Vantage](https://www.alphavantage.co/)
+- Built with [React](https://react.dev/), [TypeScript](https://www.typescriptlang.org/), and [Vite](https://vitejs.dev/)
+
+---
+
+<div align="center">
+  <p>⭐ Star this repo if you found it helpful!</p>
+</div>
 
 
