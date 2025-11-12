@@ -25,7 +25,7 @@ A comprehensive financial research application featuring real-time stock quotes,
 ## 🚀 Quick Start
 
 ### Prerequisites
-- Node.js 18+
+- Node.js 22+ (LTS recommended)
 - Backend API running at `http://localhost:3000` ([Backend Repo](https://github.com/bblair31/marketViz_backend))
 
 ### Installation
