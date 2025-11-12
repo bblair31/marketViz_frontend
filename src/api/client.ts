@@ -3,11 +3,13 @@
  */
 import axios, { AxiosError, InternalAxiosRequestConfig } from 'axios'
 import env from '../env'
+import { logger } from '@/utils/logger'
+import { API_CONFIG, STORAGE_KEYS } from '@/constants'
 
 // Create axios instance with base configuration
 export const apiClient = axios.create({
   baseURL: env.apiBaseUrl,
-  timeout: 10000,
+  timeout: API_CONFIG.TIMEOUT,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -16,13 +18,23 @@ export const apiClient = axios.create({
 // Request interceptor - automatically add JWT token to requests
 apiClient.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
-    const token = localStorage.getItem('jwt')
+    // Add JWT token
+    const token = localStorage.getItem(STORAGE_KEYS.JWT_TOKEN)
     if (token && config.headers) {
       config.headers.Authorization = `Bearer ${token}`
     }
+
+    // Log request
+    logger.apiRequest(
+      config.method?.toUpperCase() || 'GET',
+      config.url || '',
+      config.data
+    )
+
     return config
   },
   (error: AxiosError) => {
+    logger.error('API request failed', error)
     return Promise.reject(error)
   }
 )
@@ -30,10 +42,25 @@ apiClient.interceptors.request.use(
 // Response interceptor - handle errors consistently
 apiClient.interceptors.response.use(
   (response) => {
+    // Log successful response
+    logger.apiResponse(
+      response.config.method?.toUpperCase() || 'GET',
+      response.config.url || '',
+      response.status,
+      response.data
+    )
+
     // Extract data from the standard { status: "success", data: {...} } format
     return response.data.data ? { ...response, data: response.data.data } : response
   },
   (error: AxiosError<{ status: string; message: string }>) => {
+    // Log API error
+    logger.apiError(
+      error.config?.method?.toUpperCase() || 'GET',
+      error.config?.url || '',
+      error
+    )
+
     // Handle common HTTP errors
     if (error.response) {
       const { status, data } = error.response
@@ -41,29 +68,30 @@ apiClient.interceptors.response.use(
       switch (status) {
         case 401:
           // Unauthorized - clear token and redirect to login
-          localStorage.removeItem('jwt')
-          localStorage.removeItem('user')
+          localStorage.removeItem(STORAGE_KEYS.JWT_TOKEN)
+          localStorage.removeItem(STORAGE_KEYS.USER)
+          logger.warn('Unauthorized access, redirecting to login')
           window.location.href = '/login'
           break
         case 403:
-          console.error('Forbidden: You do not have permission to access this resource')
+          logger.warn('Forbidden: You do not have permission to access this resource')
           break
         case 404:
-          console.error('Not found:', data.message || 'Resource not found')
+          logger.warn('Not found:', data.message || 'Resource not found')
           break
         case 429:
-          console.error('Rate limit exceeded. Please try again later.')
+          logger.warn('Rate limit exceeded. Please try again later.')
           break
         case 500:
-          console.error('Server error. Please try again later.')
+          logger.error('Server error. Please try again later.', error)
           break
         default:
-          console.error('API Error:', data.message || 'An unexpected error occurred')
+          logger.error('API Error:', error, { message: data.message })
       }
     } else if (error.request) {
-      console.error('Network error: No response received from server')
+      logger.error('Network error: No response received from server', error)
     } else {
-      console.error('Error:', error.message)
+      logger.error('Error:', error)
     }
 
     return Promise.reject(error)
