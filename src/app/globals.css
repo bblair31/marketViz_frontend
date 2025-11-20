@@ -1,0 +1,203 @@
+@import 'tailwindcss';
+
+/* Custom design system tokens */
+@theme {
+  /* Colors - Financial/Trading Theme */
+  --color-background: oklch(0.13 0.02 250);
+  --color-foreground: oklch(0.98 0 0);
+  --color-card: oklch(0.18 0.02 250);
+  --color-card-foreground: oklch(0.98 0 0);
+  --color-popover: oklch(0.18 0.02 250);
+  --color-popover-foreground: oklch(0.98 0 0);
+  --color-primary: oklch(0.65 0.15 250);
+  --color-primary-foreground: oklch(0.98 0 0);
+  --color-secondary: oklch(0.25 0.02 250);
+  --color-secondary-foreground: oklch(0.98 0 0);
+  --color-muted: oklch(0.25 0.02 250);
+  --color-muted-foreground: oklch(0.65 0 0);
+  --color-accent: oklch(0.25 0.02 250);
+  --color-accent-foreground: oklch(0.98 0 0);
+  --color-destructive: oklch(0.55 0.2 25);
+  --color-destructive-foreground: oklch(0.98 0 0);
+  --color-border: oklch(0.3 0.02 250);
+  --color-input: oklch(0.25 0.02 250);
+  --color-ring: oklch(0.65 0.15 250);
+
+  /* Trading specific colors */
+  --color-gain: oklch(0.7 0.2 145);
+  --color-loss: oklch(0.6 0.2 25);
+  --color-neutral: oklch(0.7 0.15 80);
+  --color-volume: oklch(0.6 0.15 250);
+
+  /* Chart colors */
+  --color-chart-1: oklch(0.7 0.2 145);
+  --color-chart-2: oklch(0.6 0.2 25);
+  --color-chart-3: oklch(0.65 0.15 250);
+  --color-chart-4: oklch(0.7 0.15 80);
+  --color-chart-5: oklch(0.65 0.15 300);
+
+  /* Radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+
+  /* Animations */
+  --animate-fade-in: fade-in 0.3s ease-out;
+  --animate-slide-up: slide-up 0.3s ease-out;
+  --animate-slide-down: slide-down 0.3s ease-out;
+  --animate-pulse-glow: pulse-glow 2s infinite;
+  --animate-shimmer: shimmer 2s infinite;
+}
+
+/* Keyframes */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Base styles */
+* {
+  border-color: var(--color-border);
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-feature-settings:
+    'rlig' 1,
+    'calt' 1;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-muted-foreground);
+}
+
+/* Selection styling */
+::selection {
+  background: var(--color-primary);
+  color: var(--color-primary-foreground);
+}
+
+/* Focus visible for accessibility */
+:focus-visible {
+  outline: 2px solid var(--color-ring);
+  outline-offset: 2px;
+}
+
+/* Utility classes */
+.glass {
+  background: oklch(0.18 0.02 250 / 0.8);
+  backdrop-filter: blur(12px);
+  border: 1px solid oklch(1 0 0 / 0.1);
+}
+
+.gradient-bg {
+  background: linear-gradient(135deg, var(--color-background) 0%, oklch(0.15 0.03 250) 100%);
+}
+
+.text-gain {
+  color: var(--color-gain);
+}
+
+.text-loss {
+  color: var(--color-loss);
+}
+
+.bg-gain {
+  background: var(--color-gain);
+}
+
+.bg-loss {
+  background: var(--color-loss);
+}
+
+/* Skeleton loader */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--color-muted) 25%,
+    oklch(0.3 0.02 250) 50%,
+    var(--color-muted) 75%
+  );
+  background-size: 200% 100%;
+  animation: var(--animate-shimmer);
+}
+
+/* Live indicator */
+.live-indicator {
+  position: relative;
+}
+
+.live-indicator::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -12px;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-gain);
+  animation: var(--animate-pulse-glow);
+}

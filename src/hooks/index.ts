@@ -1,27 +1,9 @@
-/**
- * Hooks Module Entry Point
- *
- * Centralized exports for all custom hooks
- */
+export * from './use-stock-data';
+export * from './use-websocket';
+export * from './use-portfolio';
+export * from './use-screener';
+export * from './use-alerts';
 
-// Auth hooks
-export { useAuth } from './useAuth'
-
-// Stock data hooks
-export {
-  useStockQuote,
-  useDailyData,
-  useCompanyOverview,
-  useStockSearch,
-  useTopMovers,
-  useMarketNews,
-  useMultipleQuotes,
-} from './useStockData'
-
-// Watchlist hooks
-export {
-  useWatchlist,
-  useAddToWatchlist,
-  useRemoveFromWatchlist,
-  useIsInWatchlist,
-} from './useWatchlist'
+// Re-export socket client for convenience
+export { socketClient } from '@/lib/socket-client';
+export type { PriceUpdate, AlertTriggered, PortfolioUpdate, ConnectionStatus } from '@/lib/socket-client';
