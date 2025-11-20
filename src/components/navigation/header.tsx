@@ -13,6 +13,9 @@ import {
   BarChart3,
   Star,
   Menu,
+  PieChart,
+  Filter,
+  AlertCircle,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
@@ -31,6 +34,9 @@ import { useUIStore } from '@/stores/ui-store';
 
 const navItems = [
   { href: '/dashboard', label: 'Dashboard', icon: BarChart3 },
+  { href: '/portfolio', label: 'Portfolio', icon: PieChart },
+  { href: '/screener', label: 'Screener', icon: Filter },
+  { href: '/alerts', label: 'Alerts', icon: AlertCircle },
   { href: '/watchlist', label: 'Watchlist', icon: Star },
 ];
 

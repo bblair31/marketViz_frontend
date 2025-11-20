@@ -383,3 +383,326 @@ export const healthApi = {
     return response.data;
   },
 };
+
+// ============================================================================
+// Portfolio API
+// ============================================================================
+
+import type {
+  PortfolioSummary,
+  PortfolioMetrics,
+  CorrelationMatrix,
+  PerformanceDataPoint,
+  PerformancePeriod,
+  ScreenerRequest,
+  ScreenerResult,
+  ScreenerPreset,
+  PriceAlert,
+  CreateAlertInput,
+  AlertStats,
+  AlertStatus,
+  RSIData,
+  MACDData,
+  BollingerBandsData,
+  SMAData,
+  EMAData,
+  IndicatorInterval,
+  IncomeStatement,
+  BalanceSheet,
+  CashFlow,
+  EarningsData,
+  EarningsCalendarItem,
+  IPOCalendarItem,
+  EconomicDataPoint,
+  ForexRate,
+  ForexDataPoint,
+  Commodity,
+  CommodityData,
+  SentimentData,
+  InsiderTrade,
+  InstitutionalOwnership,
+  MarketStatus,
+} from '@/types';
+
+export const portfolioApi = {
+  getSummary: async (): Promise<ApiResponse<PortfolioSummary>> => {
+    const response = await apiClient.get<ApiResponse<PortfolioSummary>>('/portfolio/summary');
+    return response.data;
+  },
+
+  getMetrics: async (): Promise<ApiResponse<PortfolioMetrics>> => {
+    const response = await apiClient.get<ApiResponse<PortfolioMetrics>>('/portfolio/metrics');
+    return response.data;
+  },
+
+  getCorrelation: async (): Promise<ApiResponse<CorrelationMatrix>> => {
+    const response = await apiClient.get<ApiResponse<CorrelationMatrix>>('/portfolio/correlation');
+    return response.data;
+  },
+
+  getPerformance: async (period: PerformancePeriod = '1M'): Promise<ApiResponse<PerformanceDataPoint[]>> => {
+    const response = await apiClient.get<ApiResponse<PerformanceDataPoint[]>>('/portfolio/performance', {
+      params: { period },
+    });
+    return response.data;
+  },
+};
+
+// ============================================================================
+// Screener API
+// ============================================================================
+
+export const screenerApi = {
+  screen: async (request: ScreenerRequest): Promise<ApiResponse<ScreenerResult[]>> => {
+    const response = await apiClient.post<ApiResponse<ScreenerResult[]>>('/screener', request);
+    return response.data;
+  },
+
+  getPresets: async (): Promise<ApiResponse<ScreenerPreset[]>> => {
+    const response = await apiClient.get<ApiResponse<ScreenerPreset[]>>('/screener/presets');
+    return response.data;
+  },
+
+  runPreset: async (preset: ScreenerPreset, limit = 20): Promise<ApiResponse<ScreenerResult[]>> => {
+    const response = await apiClient.get<ApiResponse<ScreenerResult[]>>(`/screener/presets/${preset}`, {
+      params: { limit },
+    });
+    return response.data;
+  },
+
+  getSectors: async (): Promise<ApiResponse<string[]>> => {
+    const response = await apiClient.get<ApiResponse<string[]>>('/screener/sectors');
+    return response.data;
+  },
+};
+
+// ============================================================================
+// Alerts API
+// ============================================================================
+
+export const alertsApi = {
+  getAlerts: async (status?: AlertStatus): Promise<ApiResponse<PriceAlert[]>> => {
+    const response = await apiClient.get<ApiResponse<PriceAlert[]>>('/alerts', {
+      params: status ? { status } : undefined,
+    });
+    return response.data;
+  },
+
+  createAlert: async (data: CreateAlertInput): Promise<ApiResponse<PriceAlert>> => {
+    const response = await apiClient.post<ApiResponse<PriceAlert>>('/alerts', data);
+    return response.data;
+  },
+
+  updateAlert: async (id: string, data: Partial<CreateAlertInput>): Promise<ApiResponse<PriceAlert>> => {
+    const response = await apiClient.put<ApiResponse<PriceAlert>>(`/alerts/${id}`, data);
+    return response.data;
+  },
+
+  cancelAlert: async (id: string): Promise<ApiResponse<PriceAlert>> => {
+    const response = await apiClient.post<ApiResponse<PriceAlert>>(`/alerts/${id}/cancel`);
+    return response.data;
+  },
+
+  deleteAlert: async (id: string): Promise<ApiResponse<{ message: string }>> => {
+    const response = await apiClient.delete<ApiResponse<{ message: string }>>(`/alerts/${id}`);
+    return response.data;
+  },
+
+  checkAlerts: async (): Promise<ApiResponse<PriceAlert[]>> => {
+    const response = await apiClient.post<ApiResponse<PriceAlert[]>>('/alerts/check');
+    return response.data;
+  },
+
+  getStats: async (): Promise<ApiResponse<AlertStats>> => {
+    const response = await apiClient.get<ApiResponse<AlertStats>>('/alerts/stats');
+    return response.data;
+  },
+};
+
+// ============================================================================
+// Technical Indicators API
+// ============================================================================
+
+export const indicatorsApi = {
+  getRSI: async (symbol: string, interval: IndicatorInterval = 'daily', period = 14): Promise<ApiResponse<RSIData[]>> => {
+    const response = await apiClient.get<ApiResponse<RSIData[]>>(`/market/indicators/${symbol}/rsi`, {
+      params: { interval, period },
+    });
+    return response.data;
+  },
+
+  getMACD: async (symbol: string, interval: IndicatorInterval = 'daily'): Promise<ApiResponse<MACDData[]>> => {
+    const response = await apiClient.get<ApiResponse<MACDData[]>>(`/market/indicators/${symbol}/macd`, {
+      params: { interval },
+    });
+    return response.data;
+  },
+
+  getBollingerBands: async (symbol: string, interval: IndicatorInterval = 'daily', period = 20): Promise<ApiResponse<BollingerBandsData[]>> => {
+    const response = await apiClient.get<ApiResponse<BollingerBandsData[]>>(`/market/indicators/${symbol}/bbands`, {
+      params: { interval, period },
+    });
+    return response.data;
+  },
+
+  getSMA: async (symbol: string, interval: IndicatorInterval = 'daily', period = 20): Promise<ApiResponse<SMAData[]>> => {
+    const response = await apiClient.get<ApiResponse<SMAData[]>>(`/market/indicators/${symbol}/sma`, {
+      params: { interval, period },
+    });
+    return response.data;
+  },
+
+  getEMA: async (symbol: string, interval: IndicatorInterval = 'daily', period = 20): Promise<ApiResponse<EMAData[]>> => {
+    const response = await apiClient.get<ApiResponse<EMAData[]>>(`/market/indicators/${symbol}/ema`, {
+      params: { interval, period },
+    });
+    return response.data;
+  },
+};
+
+// ============================================================================
+// Fundamentals API
+// ============================================================================
+
+export const fundamentalsApi = {
+  getIncomeStatement: async (symbol: string): Promise<ApiResponse<IncomeStatement[]>> => {
+    const response = await apiClient.get<ApiResponse<IncomeStatement[]>>(`/market/fundamentals/${symbol}/income`);
+    return response.data;
+  },
+
+  getBalanceSheet: async (symbol: string): Promise<ApiResponse<BalanceSheet[]>> => {
+    const response = await apiClient.get<ApiResponse<BalanceSheet[]>>(`/market/fundamentals/${symbol}/balance`);
+    return response.data;
+  },
+
+  getCashFlow: async (symbol: string): Promise<ApiResponse<CashFlow[]>> => {
+    const response = await apiClient.get<ApiResponse<CashFlow[]>>(`/market/fundamentals/${symbol}/cashflow`);
+    return response.data;
+  },
+
+  getEarnings: async (symbol: string): Promise<ApiResponse<EarningsData[]>> => {
+    const response = await apiClient.get<ApiResponse<EarningsData[]>>(`/market/fundamentals/${symbol}/earnings`);
+    return response.data;
+  },
+
+  getEarningsCalendar: async (): Promise<ApiResponse<EarningsCalendarItem[]>> => {
+    const response = await apiClient.get<ApiResponse<EarningsCalendarItem[]>>('/market/calendar/earnings');
+    return response.data;
+  },
+
+  getIPOCalendar: async (): Promise<ApiResponse<IPOCalendarItem[]>> => {
+    const response = await apiClient.get<ApiResponse<IPOCalendarItem[]>>('/market/calendar/ipo');
+    return response.data;
+  },
+};
+
+// ============================================================================
+// Economic Indicators API
+// ============================================================================
+
+export const economicApi = {
+  getGDP: async (interval: 'annual' | 'quarterly' = 'annual'): Promise<ApiResponse<EconomicDataPoint[]>> => {
+    const response = await apiClient.get<ApiResponse<EconomicDataPoint[]>>('/economic/gdp', {
+      params: { interval },
+    });
+    return response.data;
+  },
+
+  getTreasuryYield: async (maturity = '10year'): Promise<ApiResponse<EconomicDataPoint[]>> => {
+    const response = await apiClient.get<ApiResponse<EconomicDataPoint[]>>('/economic/treasury-yield', {
+      params: { maturity },
+    });
+    return response.data;
+  },
+
+  getFederalFundsRate: async (): Promise<ApiResponse<EconomicDataPoint[]>> => {
+    const response = await apiClient.get<ApiResponse<EconomicDataPoint[]>>('/economic/federal-funds-rate');
+    return response.data;
+  },
+
+  getCPI: async (): Promise<ApiResponse<EconomicDataPoint[]>> => {
+    const response = await apiClient.get<ApiResponse<EconomicDataPoint[]>>('/economic/cpi');
+    return response.data;
+  },
+
+  getInflation: async (): Promise<ApiResponse<EconomicDataPoint[]>> => {
+    const response = await apiClient.get<ApiResponse<EconomicDataPoint[]>>('/economic/inflation');
+    return response.data;
+  },
+
+  getUnemployment: async (): Promise<ApiResponse<EconomicDataPoint[]>> => {
+    const response = await apiClient.get<ApiResponse<EconomicDataPoint[]>>('/economic/unemployment');
+    return response.data;
+  },
+};
+
+// ============================================================================
+// Forex API
+// ============================================================================
+
+export const forexApi = {
+  getRate: async (from: string, to: string): Promise<ApiResponse<ForexRate>> => {
+    const response = await apiClient.get<ApiResponse<ForexRate>>('/market/forex/rate', {
+      params: { from, to },
+    });
+    return response.data;
+  },
+
+  getDaily: async (from: string, to: string): Promise<ApiResponse<ForexDataPoint[]>> => {
+    const response = await apiClient.get<ApiResponse<ForexDataPoint[]>>('/market/forex/daily', {
+      params: { from, to },
+    });
+    return response.data;
+  },
+};
+
+// ============================================================================
+// Commodities API
+// ============================================================================
+
+export const commoditiesApi = {
+  getData: async (commodity: Commodity, interval: 'daily' | 'weekly' | 'monthly' = 'monthly'): Promise<ApiResponse<CommodityData[]>> => {
+    const response = await apiClient.get<ApiResponse<CommodityData[]>>(`/market/commodities/${commodity}`, {
+      params: { interval },
+    });
+    return response.data;
+  },
+};
+
+// ============================================================================
+// News & Sentiment API
+// ============================================================================
+
+export const newsApi = {
+  getMarketNews: async (category = 'general'): Promise<ApiResponse<NewsArticle[]>> => {
+    const response = await apiClient.get<ApiResponse<NewsArticle[]>>('/news/market', {
+      params: { category },
+    });
+    return response.data;
+  },
+
+  getCompanyNews: async (symbol: string): Promise<ApiResponse<NewsArticle[]>> => {
+    const response = await apiClient.get<ApiResponse<NewsArticle[]>>(`/news/company/${symbol}`);
+    return response.data;
+  },
+
+  getSentiment: async (symbol: string): Promise<ApiResponse<SentimentData>> => {
+    const response = await apiClient.get<ApiResponse<SentimentData>>(`/news/sentiment/${symbol}`);
+    return response.data;
+  },
+
+  getInsiderTrades: async (symbol: string): Promise<ApiResponse<InsiderTrade[]>> => {
+    const response = await apiClient.get<ApiResponse<InsiderTrade[]>>(`/news/insider/${symbol}`);
+    return response.data;
+  },
+
+  getInstitutionalOwnership: async (symbol: string): Promise<ApiResponse<InstitutionalOwnership[]>> => {
+    const response = await apiClient.get<ApiResponse<InstitutionalOwnership[]>>(`/news/institutional/${symbol}`);
+    return response.data;
+  },
+
+  getMarketStatus: async (): Promise<ApiResponse<MarketStatus>> => {
+    const response = await apiClient.get<ApiResponse<MarketStatus>>('/news/market-status');
+    return response.data;
+  },
+};
